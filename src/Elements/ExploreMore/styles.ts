@@ -19,14 +19,19 @@ export const Container = styled.div`
 
     .header-box {
       display: flex;
-      justify-content: space-between;
-      border: 1px solid rgb(200, 200, 200);
+      justify-content: flex-start;
       height: 2.5rem;
-      width: 95%;
+      width: 100%;
       margin: auto;
 
+      h1 {
+        font-family: 'Poppins';
+        font-size: 1.2rem;
+        margin: 1.1rem 0;
+      }
+
       .icon-box {
-      border: 1px solid rgb(200, 200, 200);
+        margin: 1rem .8rem;
         width: 40px;
         height: 2.5rem;
       }
