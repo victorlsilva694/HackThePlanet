@@ -28,7 +28,7 @@ function HorizontalContainer() {
       nome: "Data",
       id: 3,
       icon: (
-        <BsCalendarDayFill
+        <BsCalendarDayFill  
           style={{ width: "22px", height: "22px", color: "rgb(80, 80, 80)" }}
         />
       ),
