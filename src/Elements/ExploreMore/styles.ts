@@ -16,14 +16,23 @@ export const Container = styled.div`
     margin: auto;
     height: 4rem;
     border-right: 1px solid rgb(200, 200, 200);
+    display: flex;
 
     .header-box {
       display: flex;
       justify-content: flex-start;
       height: 2.5rem;
       width: 100%;
-      margin: auto;
 
+      #button-explore {
+        width: 60px;
+        border: none;
+        height: 3.5rem;
+        border-radius: 5px;
+        background-color: rgb(0, 134, 175);
+        margin: auto;
+      }
+      
       h1 {
         font-family: 'Poppins';
         font-size: 1.2rem;
@@ -35,6 +44,8 @@ export const Container = styled.div`
         width: 40px;
         height: 2.5rem;
       }
+
+
     }
   }
 `;

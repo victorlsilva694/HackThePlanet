@@ -51,7 +51,7 @@ function Navbar() {
           <Button variant="light" style={{ width: "120px", height: "2.5rem" }}>
             Register
           </Button>
-          <Button variant="dark" style={{ width: "120px", height: "2.5rem" }}>
+          <Button variant="primary" style={{ width: "120px", height: "2.5rem" }}>
             Primary
           </Button>
         </Buttons>

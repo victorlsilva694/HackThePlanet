@@ -5,6 +5,7 @@ export const BannerContainer = styled.div`
   max-width: 1920px;
   height: auto;
   display: flex;
+  border: 1px solid black;
   justify-content: space-between;
   align-items: center;
 
@@ -16,6 +17,7 @@ export const BannerContainer = styled.div`
 
   .images-banner {
     width: 50%;
+    border: 1px solid black;
     height: 40rem;
 
     @media (max-width: 980px) {

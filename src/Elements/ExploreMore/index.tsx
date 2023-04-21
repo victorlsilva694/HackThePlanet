@@ -5,22 +5,33 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { BsCalendarDayFill } from "react-icons/bs";
 
 function HorizontalContainer() {
-
   const items = [
     {
       nome: "Lugar",
       id: 1,
-      icon: <SiGooglemaps style={{ width: '22px', height: '22px', color: 'rgb(80, 80, 80)' }} />
+      icon: (
+        <SiGooglemaps
+          style={{ width: "22px", height: "22px", color: "rgb(80, 80, 80)" }}
+        />
+      ),
     },
     {
       nome: "Pessoas",
       id: 2,
-      icon: <BsFillPeopleFill style={{ width: '22px', height: '22px', color: 'rgb(80, 80, 80)'  }} />
+      icon: (
+        <BsFillPeopleFill
+          style={{ width: "22px", height: "22px", color: "rgb(80, 80, 80)" }}
+        />
+      ),
     },
     {
       nome: "Data",
       id: 3,
-      icon: <BsCalendarDayFill style={{ width: '22px', height: '22px', color: 'rgb(80, 80, 80)'  }} />
+      icon: (
+        <BsCalendarDayFill
+          style={{ width: "22px", height: "22px", color: "rgb(80, 80, 80)" }}
+        />
+      ),
     },
   ];
 
@@ -30,14 +41,17 @@ function HorizontalContainer() {
         return (
           <div className="box-selected">
             <div className="header-box">
-              <div className="icon-box">
-                {item.icon}
-              </div>
+              <div className="icon-box">{item.icon}</div>
               <h1>{item.nome}</h1>
             </div>
           </div>
         );
       })}
+      <div className="box-selected">
+        <div className="header-box">
+          <button id="button-explore"></button>
+        </div>
+      </div>
     </Container>
   );
 }
