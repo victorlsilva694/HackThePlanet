@@ -49,7 +49,7 @@ function HorizontalContainer() {
       })}
       <div className="box-selected">
         <div className="header-box">
-          <button id="button-explore"></button>
+          <button id="button-explore">Buscar mais</button>
         </div>
       </div>
     </Container>

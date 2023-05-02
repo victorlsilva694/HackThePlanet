@@ -3,6 +3,12 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Navbar from './Components/Navbar'
 import Banner from './Components/Banner'
+import BoxListContents from './Components/Home/BoxListContents'
+import DescriptionPlataform from './Components/Home/DescriptionPlataform'
+import CardDataContent from './Components/Home/CardDataContent'
+import EventsPlataform from './Components/Home/EventsPlataform'
+import ServicesProvided from './Components/Home/ServicesProvided'
+import Footer from './Elements/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,6 +17,11 @@ function App() {
     <>
       <Navbar />
       <Banner/>
+      <BoxListContents />
+      <CardDataContent />
+      <EventsPlataform />
+      <ServicesProvided />
+      <Footer />
     </>
   )
 }

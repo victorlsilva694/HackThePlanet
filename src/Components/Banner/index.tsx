@@ -1,5 +1,5 @@
 import HorizontalContainer from "../../Elements/ExploreMore";
-import { BannerContainer } from "./styles";
+import { BannerContainer, GridImages } from "./styles";
 
 function Banner() {
   return (
@@ -18,7 +18,19 @@ function Banner() {
         </div>
         <HorizontalContainer />
       </div>
-      <div className="images-banner"></div>
+      <div className="images-banner">
+        <GridImages>
+          <div className="grid-images">
+            <div className="box-images-duplicate">
+              <div className="box-first-image"></div>
+              <div className="box-second-image"></div>
+            </div>
+            <div className="image-align-top">
+
+            </div>
+          </div>
+        </GridImages>
+      </div>
     </BannerContainer>
   );
 }

@@ -49,10 +49,10 @@ function Navbar() {
         })}
         <Buttons>
           <Button variant="light" style={{ width: "120px", height: "2.5rem" }}>
-            Register
+            Registrar
           </Button>
           <Button variant="primary" style={{ width: "120px", height: "2.5rem" }}>
-            Primary
+            Entrar
           </Button>
         </Buttons>
       </Links>
