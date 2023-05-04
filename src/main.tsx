@@ -7,9 +7,18 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import App from "./App";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
 
-const routes = createRoutesFromElements(<Route path="/" element={<App />} />);
+const routes = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/">
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+    </Route>
+  )
+);
+
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -20,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     color: #333;
   }
 
@@ -34,12 +43,10 @@ const GlobalStyle = createGlobalStyle`
 
 export default GlobalStyle;
 
-const router = createBrowserRouter(routes);
-
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
-    <RouterProvider router={router} />
+    <RouterProvider router={routes} />
   </React.StrictMode>,
   document.getElementById("root")
 );

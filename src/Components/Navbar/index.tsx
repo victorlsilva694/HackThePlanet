@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Nav, Logo, Links, Link, Buttons, HamburguerButton } from "./styles";
 import { Button } from "react-bootstrap";
 import { SiPlanetscale } from "react-icons/si";
 import { AiOutlineMenu } from "react-icons/ai";
+import { redirect, Navigate, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
   const linksInformation = [
     {
       id: 1,
@@ -27,6 +29,10 @@ function Navbar() {
       link: "/Pacotes",
     },
   ];
+
+  function redirectToNewUrl() {
+    navigate("/login");
+  }
 
   return (
     <Nav>
@@ -51,7 +57,7 @@ function Navbar() {
           <Button variant="light" style={{ width: "120px", height: "2.5rem" }}>
             Registrar
           </Button>
-          <Button variant="primary" style={{ width: "120px", height: "2.5rem" }}>
+          <Button onClick={redirectToNewUrl} variant="primary" style={{ width: "120px", height: "2.5rem" }}>
             Entrar
           </Button>
         </Buttons>
