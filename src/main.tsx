@@ -9,16 +9,18 @@ import {
 import { createGlobalStyle } from "styled-components";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import { AxiosProvider } from "./Providers/AxiosProvider";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Route>
   )
 );
-
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -44,9 +46,11 @@ const GlobalStyle = createGlobalStyle`
 export default GlobalStyle;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <GlobalStyle />
-    <RouterProvider router={routes} />
-  </React.StrictMode>,
+  <AxiosProvider>
+    <React.StrictMode>
+      <GlobalStyle />
+      <RouterProvider router={routes} />
+    </React.StrictMode>
+  </AxiosProvider>,
   document.getElementById("root")
 );
