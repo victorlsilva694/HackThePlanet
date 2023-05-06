@@ -5,6 +5,7 @@ export const RegisterBoxForm = styled.div`
   height: 50rem;
   margin: auto;
 
+  
   .header-login-form {
     display: flex;
     padding: 2rem;

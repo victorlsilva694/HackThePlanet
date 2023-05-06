@@ -35,7 +35,7 @@ export const RootContainerPage = styled.div`
       justify-content: center;
       align-items: center;
       height: 80%;
-
+      
       .box-central {
         width: 60%;
         height: 25rem;
@@ -50,6 +50,10 @@ export const RootContainerPage = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 980px) {
+      display: none;
+    }
 
     img {
       width: 65%;

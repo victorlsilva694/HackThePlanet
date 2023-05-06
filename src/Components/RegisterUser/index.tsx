@@ -5,6 +5,8 @@ import HomeImage from "./images/HomeImage.png";
 import { RegisterBoxForm } from "./styles";
 import { useState } from "react";
 import { useAxios } from "../../Providers/AxiosProvider";
+import DOMPurify from "dompurify";
+import axios from "axios";
 
 function RegisterUser() {
   interface userData {
@@ -18,16 +20,50 @@ function RegisterUser() {
     name: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const { axiosInstance } = useAxios();
-
-  async function fetchData() {
-    const response = await axiosInstance.get('/users');
-    console.log(response.data);
+  type FormControlElement =
+    | HTMLInputElement
+    | HTMLSelectElement
+    | HTMLTextAreaElement;
+  function handleInputChange(
+    event: React.ChangeEvent<FormControlElement>,
+    fieldName: keyof userData
+  ) {
+    setUserState({
+      ...userState,
+      [fieldName]: DOMPurify.sanitize(event.target.value),
+    });
   }
-  
+
+  async function fetchRegisterUserData(
+    event: React.FormEvent<HTMLFormElement>
+  ) {
+    event.preventDefault();
+
+    const emailRegex = /\S+@\S+\.\S+/;
+
+    const sanitizedUserData = {
+      name: DOMPurify.sanitize(userState.name),
+      email: DOMPurify.sanitize(userState.email),
+      password: DOMPurify.sanitize(userState.password),
+      confirmPassword: DOMPurify.sanitize(userState.confirmPassword),
+    };
+
+    await axios.post("http://localhost:8000/register", sanitizedUserData, {
+        headers: {
+          "Access-Control-Allow-Origin": 'http://localhost:5173/'
+        }
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   return (
     <RootContainerPage>
@@ -43,9 +79,21 @@ function RegisterUser() {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Nome de usuário</Form.Label>
                   <Form.Control
+                    value={userState.name}
+                    onChange={(event) => handleInputChange(event, "name")}
+                    style={{ height: "3rem" }}
+                    type="text"
+                    placeholder="Digite seu nome completo"
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Endereço de email</Form.Label>
+                  <Form.Control
+                    value={userState.email}
+                    onChange={(event) => handleInputChange(event, "email")}
                     style={{ height: "3rem" }}
                     type="email"
-                    placeholder="Digite seu nome completo"
+                    placeholder="emailexemplo@exemplo.com"
                   />
                 </Form.Group>
                 <Row>
@@ -53,9 +101,13 @@ function RegisterUser() {
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Senha</Form.Label>
                       <Form.Control
+                        value={userState.password}
+                        onChange={(event) =>
+                          handleInputChange(event, "password")
+                        }
                         style={{ height: "3rem" }}
-                        type="email"
-                        placeholder="emailexemplo@exemplo.com"
+                        type="password"
+                        placeholder="***********************"
                       />
                     </Form.Group>
                   </Col>
@@ -64,20 +116,17 @@ function RegisterUser() {
                       <Form.Label>Confirmar Senha</Form.Label>
                       <Form.Control
                         style={{ height: "3rem" }}
+                        value={userState.confirmPassword}
+                        onChange={(event) =>
+                          handleInputChange(event, "confirmPassword")
+                        }
                         type="password"
                         placeholder="***********************"
                       />
                     </Form.Group>
                   </Col>
                 </Row>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Endereço de email</Form.Label>
-                  <Form.Control
-                    style={{ height: "3rem" }}
-                    type="email"
-                    placeholder="emailexemplo@exemplo.com"
-                  />
-                </Form.Group>
+
                 <Form.Group
                   className="mb-3"
                   style={{ display: "flex", justifyContent: "space-between" }}
@@ -91,6 +140,7 @@ function RegisterUser() {
                 </Form.Group>
                 <br />
                 <Button
+                  onClick={fetchRegisterUserData}
                   style={{
                     backgroundColor: "#2d4550",
                     width: "100%",
