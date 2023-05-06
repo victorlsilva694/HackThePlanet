@@ -6,7 +6,6 @@ import { RegisterBoxForm } from "./styles";
 import { useState } from "react";
 import { useAxios } from "../../Providers/AxiosProvider";
 import DOMPurify from "dompurify";
-import axios from "axios";
 
 function RegisterUser() {
   interface userData {
@@ -44,6 +43,12 @@ function RegisterUser() {
     event.preventDefault();
 
     const emailRegex = /\S+@\S+\.\S+/;
+    if (
+      !emailRegex.test(userState.email) ||
+      userState.password !== userState.confirmPassword
+    ) {
+      alert("erro");
+    }
 
     const sanitizedUserData = {
       name: DOMPurify.sanitize(userState.name),
@@ -52,10 +57,12 @@ function RegisterUser() {
       confirmPassword: DOMPurify.sanitize(userState.confirmPassword),
     };
 
-    await axios.post("http://localhost:8000/register", sanitizedUserData, {
+    await axiosInstance
+      .post("/register", sanitizedUserData, {
         headers: {
-          "Access-Control-Allow-Origin": 'http://localhost:5173/'
-        }
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
       })
       .then((response) => {
         console.log(response);
