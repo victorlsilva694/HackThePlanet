@@ -6,23 +6,21 @@ import { RegisterBoxForm } from "./styles";
 import { useState } from "react";
 import { useAxios } from "../../Providers/AxiosProvider";
 import DOMPurify from "dompurify";
+import axios from "axios";
 
 function RegisterUser() {
   interface userData {
     name: string;
     email: string;
     password: string;
-    confirmPassword: string;
   }
 
   const [userState, setUserState] = useState<userData>({
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
-  const { axiosInstance } = useAxios();
   type FormControlElement =
     | HTMLInputElement
     | HTMLSelectElement
@@ -43,27 +41,15 @@ function RegisterUser() {
     event.preventDefault();
 
     const emailRegex = /\S+@\S+\.\S+/;
-    if (
-      !emailRegex.test(userState.email) ||
-      userState.password !== userState.confirmPassword
-    ) {
-      alert("erro");
-    }
 
     const sanitizedUserData = {
       name: DOMPurify.sanitize(userState.name),
       email: DOMPurify.sanitize(userState.email),
       password: DOMPurify.sanitize(userState.password),
-      confirmPassword: DOMPurify.sanitize(userState.confirmPassword),
     };
 
-    await axiosInstance
-      .post("/register", sanitizedUserData, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-      })
+    await axios
+      .post("http://localhost:8000/api/register", sanitizedUserData)
       .then((response) => {
         console.log(response);
       })
@@ -123,10 +109,6 @@ function RegisterUser() {
                       <Form.Label>Confirmar Senha</Form.Label>
                       <Form.Control
                         style={{ height: "3rem" }}
-                        value={userState.confirmPassword}
-                        onChange={(event) =>
-                          handleInputChange(event, "confirmPassword")
-                        }
                         type="password"
                         placeholder="***********************"
                       />
