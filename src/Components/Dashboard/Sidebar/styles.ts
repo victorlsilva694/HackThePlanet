@@ -126,11 +126,11 @@ export const CampaignsSidebar = styled.div`
         left: 0;
         width: 100%;
         height: 1px;
-        background-color: rgb(150, 150, 150);
+        background-color: rgb(170, 170, 170);
         transform-origin: left;
         transform: scaleX(0);
-        animation: ${fadeIn} 0.8s ease-in-out forwards,
-          ${fadeOut} 0.8s linear forwards;
+        animation: ${fadeIn} 1s ease-in-out forwards,
+          ${fadeOut} 1s linear forwards;
         animation-fill-mode: forwards;
       }
       &:hover::after {
