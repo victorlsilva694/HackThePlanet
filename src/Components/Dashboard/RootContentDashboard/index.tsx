@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, HTMLAttributes } from "react";
 import Sidebar from "../Sidebar";
 import { RootContent } from "./styles";
 import { UserContext } from "../../../UserContextStore/UserContext";
+import MdDashboard from "../DashboardPainels/MdDashboard";
 
 interface INameDashboard {
   name: string;
@@ -11,12 +12,15 @@ interface IComponents {
   [key: string]: JSX.Element;
 }
 
-function renderComponentByName(name: string) {
+function renderComponentByName<Props extends HTMLAttributes<HTMLElement>>(
+  name: string,
+  props?: Props
+) {
   const components: IComponents = {
-    MdDashboard: <h1>ASDDDDD</h1>,
+    MdDashboard: <MdDashboard />,
     AiFolderOpen: <h1>DDDDDD</h1>,
     GoGraph: <h1>GAAAoGraph</h1>,
-    Default: <h1>aAAAAAsdasdasd</h1>
+    Default: <h1>aAAAAAsdasdasd</h1>,
   };
 
   return components[name] || null;
