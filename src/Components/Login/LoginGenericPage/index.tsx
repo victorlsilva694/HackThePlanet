@@ -6,52 +6,62 @@ import { useState } from "react";
 import DOMPurify from "dompurify";
 import axios from "axios";
 import { redirect, Navigate, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { UserContext } from "../../../UserContextStore/UserContext";
 
 function LoginGenericPage() {
-  interface userData {
+  interface UserData {
     email: string;
     password: string;
   }
 
-  const [userState, setUserState] = useState<userData>({
+  interface LoginResponse {
+    username: string;
+    token: string;
+  }
+
+  const [userState, setUserState] = useState<UserData>({
     email: "",
     password: "",
   });
+
+  const { userName, setUserName} = useContext(UserContext);
+  const navigate = useNavigate();
+  const [userNameLocalData, setUserNameLocalData] = useState("");
+  const [token, setToken] = useState("");
 
   type FormControlElement =
     | HTMLInputElement
     | HTMLSelectElement
     | HTMLTextAreaElement;
+
   function handleInputChange(
     event: React.ChangeEvent<FormControlElement>,
-    fieldName: keyof userData
+    fieldName: keyof UserData
   ) {
     setUserState({
       ...userState,
       [fieldName]: DOMPurify.sanitize(event.target.value),
     });
   }
-  const navigate = useNavigate();
 
-  async function fetchRegisterUserData(
-    event: React.FormEvent<HTMLFormElement>
-  ) {
-    event.preventDefault();
+  async function fetchRegisterUserData() {
     const sanitizedUserData = {
       email: DOMPurify.sanitize(userState.email),
       password: DOMPurify.sanitize(userState.password),
     };
+    const response = await axios.post<LoginResponse>(
+      "http://localhost:8000/api/login",
+      sanitizedUserData
+    );
+    const { username, token } = response.data;
 
-    await axios
-      .post("http://localhost:8000/api/login", sanitizedUserData)
-      .then((response) => {
-        const token = response.data.token;
-        localStorage.setItem("token_ga_profile", token);
-        navigate("/dashboard");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    localStorage.setItem("token_ga_profile", token);
+    localStorage.setItem("userName", username);
+    setUserNameLocalData(response.data.username);
+    setUserName(username);
+
+    navigate("/dashboard");
   }
 
   return (
@@ -59,7 +69,7 @@ function LoginGenericPage() {
       <div className="login-col-boxform">
         <div className="header-login-form">
           <SiPlanetscale style={{ width: "20px", height: "20px" }} />
-          <h1>Hack the Planet</h1>
+          <h1>Hack the Planet </h1>
         </div>
         <div className="box-form">
           <div className="box-central">
@@ -108,7 +118,6 @@ function LoginGenericPage() {
                   border: "none",
                 }}
                 variant="primary"
-                type="submit"
               >
                 Entrar agora
               </Button>

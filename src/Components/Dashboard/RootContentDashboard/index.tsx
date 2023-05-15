@@ -26,9 +26,12 @@ function renderComponentByName<Props extends HTMLAttributes<HTMLElement>>(
   return components[name] || null;
 }
 
+
 function RootContentDashboard({ name }: INameDashboard) {
-  const { nameDashboard } = useContext(UserContext);
+  const { nameDashboard, userName } = useContext(UserContext);
   const componentToRender = renderComponentByName(nameDashboard ?? "Default");
+
+  console.log("USER", userName)
   return (
     <RootContent>
       <Sidebar />

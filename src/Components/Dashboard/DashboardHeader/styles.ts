@@ -2,20 +2,68 @@ import styled from "styled-components";
 
 export const HeaderDashboardContainer = styled.div`
   width: 100%;
-  height: 10rem;
+  height: 7rem;
   padding: 1rem;
 
   .content-data-dashboard {
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(210, 210, 210);
 
     .layer-title-dashboard {
-      border: 1px solid rgb(210, 210, 210);
       display: flex;
       justify-content: space-between;
-      width: 100%;
-      height: 4rem;
+      width: 95%;
+      height: 3rem;
+      margin: 1rem auto;
+      align-items: center;
+
+      h1 {
+        font-size: 1.5rem;
+
+        @media (max-width: 1680px) {
+          font-size: 1rem;
+        }
+      }
+
+      .layer-buttons-header {
+        width: 30%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (max-width: 1680px) {
+          width: 50%;
+        }
+
+        .date-layer {
+          width: 85%;
+          border: 1px solid rgb(220, 220, 220);
+          border-radius: 5px;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          h1 {
+            font-family: "Raleway";
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            color: rgb(160, 160, 160);
+
+            @media (max-width: 1280px) {
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .more-info-layer {
+          width: 10%;
+          height: 100%;
+          background-color: #165849;
+          border-radius: 5px;
+        }
+      }
     }
   }
 `;
