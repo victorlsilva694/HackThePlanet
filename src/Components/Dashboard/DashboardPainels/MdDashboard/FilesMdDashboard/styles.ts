@@ -82,5 +82,60 @@ export const DashBoardRootPainelData = styled.div`
         margin: auto 0;
       }
     }
+
+    table {
+      width: 90%;
+      margin: auto;
+
+      @media (max-width: 1490px) {
+        width: 100%;
+      }
+
+      thead {
+        tr {
+          th {
+            width: 200px;
+            height: 3.5rem;
+            margin: auto;
+            .table-header {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-around;
+              height: 3rem;
+              display: flex;
+              font-family: "Raleway";
+              font-weight: 600;
+
+              @media (max-width: 1690px) {
+                font-size: 0.9rem;
+              }
+
+              @media (max-width: 1490px) {
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            width: 200px;
+            height: 3rem;
+            margin: auto;
+            text-align: center;
+            font-family: "Poppins";
+            @media (max-width: 1690px) {
+              font-size: 0.9rem;
+            }
+
+            @media (max-width: 1490px) {
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+    }
   }
 `;

@@ -1,9 +1,44 @@
 import { Button, FloatingLabel, Form, InputGroup } from "react-bootstrap";
 import { DashBoardRootPainelData } from "./styles";
 import { BsSearch } from "react-icons/bs";
-import { Table } from "react-bootstrap";
+import { BsArrowsExpand } from "react-icons/bs";
+import { IconType } from "react-icons";
 
 function FilesMdDashboard() {
+  interface TableHeaderItem {
+    id: number;
+    name: string;
+    iconComponent: IconType;
+  }
+
+  const tableHeader: TableHeaderItem[] = [
+    {
+      id: 0,
+      name: "ID da transação",
+      iconComponent: BsArrowsExpand,
+    },
+    {
+      id: 0,
+      name: "Nome da transação",
+      iconComponent: BsArrowsExpand,
+    },
+    {
+      id: 0,
+      name: "Validade da transação",
+      iconComponent: BsArrowsExpand,
+    },
+    {
+      id: 0,
+      name: "Editar transação",
+      iconComponent: BsArrowsExpand,
+    },
+    {
+      id: 0,
+      name: " Excluir transação",
+      iconComponent: BsArrowsExpand,
+    },
+  ];
+
   return (
     <DashBoardRootPainelData>
       <div className="body-header-data">
@@ -41,30 +76,115 @@ function FilesMdDashboard() {
             </InputGroup>
           </div>
         </div>
-        <Table style={{ width: "95%", margin: "2rem auto" }} bordered hover>
+        <table>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Nome da transação</th>
-              <th>Validade</th>
-              <th>Editar</th>
-              <th>Excluir</th>
+              {tableHeader.map((tableHeadercallback: any) => {
+                return (
+                  <th>
+                    <div className="table-header">
+                      {tableHeadercallback.name} <BsArrowsExpand />
+                    </div>
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>0</td>
-              <td>Não existente</td>
-              <td>Não existente</td>
+              <td>A1WQS23 </td>
+              <td>Pacote A1WQS23</td>
+              <td>15/01/2023</td>
               <td>
-                <Button style={{ width: '80%', margin: 'auto', backgroundColor: "#17A2B8", border: 'none'  }} variant="warning">Warning</Button>
+                <Button
+                  variant="warning"
+                  style={{
+                    width: "60%",
+                    backgroundColor: "#17A2B8",
+                    border: "none",
+                    color: "white",
+                  }}
+                >
+                  Editar
+                </Button>
               </td>
               <td>
-                <Button variant="danger">Danger</Button>
+                <Button variant="danger" style={{ width: "60%" }}>
+                  Excluir
+                </Button>
+              </td>
+            </tr>
+            <tr>
+              <td>A1WQS23 </td>
+              <td>Pacote A1WQS23</td>
+              <td>15/01/2023</td>
+              <td>
+                <Button
+                  variant="warning"
+                  style={{
+                    width: "60%",
+                    backgroundColor: "#17A2B8",
+                    border: "none",
+                    color: "white",
+                  }}
+                >
+                  Editar
+                </Button>
+              </td>
+              <td>
+                <Button variant="danger" style={{ width: "60%" }}>
+                  Excluir
+                </Button>
+              </td>
+            </tr>
+            <tr>
+              <td>A1WQS23 </td>
+              <td>Pacote A1WQS23</td>
+              <td>15/01/2023</td>
+              <td>
+                <Button
+                  variant="warning"
+                  style={{
+                    width: "60%",
+                    backgroundColor: "#17A2B8",
+                    border: "none",
+                    color: "white",
+                  }}
+                >
+                  Editar
+                </Button>
+              </td>
+              <td>
+                <Button variant="danger" style={{ width: "60%" }}>
+                  Excluir
+                </Button>
+              </td>
+            </tr>
+            <tr>
+              <td>A1WQS23 </td>
+              <td>Pacote A1WQS23</td>
+              <td>15/01/2023</td>
+              <td>
+                <Button
+                  variant="warning"
+                  style={{
+                    width: "60%",
+                    backgroundColor: "#17A2B8",
+                    border: "none",
+                    color: "white",
+                  }}
+                >
+                  Editar
+                </Button>
+              </td>
+              <td>
+                <Button variant="danger" style={{ width: "60%" }}>
+                  Excluir
+                </Button>
               </td>
             </tr>
           </tbody>
-        </Table>
+        </table>
       </div>
     </DashBoardRootPainelData>
   );
