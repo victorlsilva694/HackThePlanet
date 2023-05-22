@@ -3,6 +3,8 @@ import { DashBoardRootPainelData } from "./styles";
 import { BsSearch } from "react-icons/bs";
 import { BsArrowsExpand } from "react-icons/bs";
 import { IconType } from "react-icons";
+import PayoutCharts from "./PayoutCharts";
+import MoreSearched from "./MoreSearched";
 
 function FilesMdDashboard() {
   interface TableHeaderItem {
@@ -47,11 +49,13 @@ function FilesMdDashboard() {
             <div className="header-box-travel-layer">
               <h1>Valores Investidos </h1>
             </div>
+            <PayoutCharts />
           </div>
           <div className="values-travel">
             <div className="header-box-travel-layer">
-              <h1>Atividades Recentes</h1>
+              <h1>Atividades Mais buscadas</h1>
             </div>
+            <MoreSearched />
           </div>
         </div>
       </div>
