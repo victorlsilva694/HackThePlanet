@@ -13,6 +13,12 @@ function FilesMdDashboard() {
     iconComponent: IconType;
   }
 
+  interface ILastTransactions {
+    id: number;
+    transactionName: string;
+    TransactionValidity: string;
+  }
+
   const tableHeader: TableHeaderItem[] = [
     {
       id: 0,
@@ -106,14 +112,22 @@ function FilesMdDashboard() {
                     width: "60%",
                     backgroundColor: "#17A2B8",
                     border: "none",
-                    color: "white",
+                    color: "rgb(240, 240, 240)",
+                    borderRadius: "3px",
                   }}
                 >
                   Editar
                 </Button>
               </td>
               <td>
-                <Button variant="danger" style={{ width: "60%" }}>
+                <Button
+                  variant="danger"
+                  style={{
+                    width: "60%",
+                    color: "rgb(240, 240, 240)",
+                    borderRadius: "3px",
+                  }}
+                >
                   Excluir
                 </Button>
               </td>
@@ -129,14 +143,22 @@ function FilesMdDashboard() {
                     width: "60%",
                     backgroundColor: "#17A2B8",
                     border: "none",
-                    color: "white",
+                    color: "rgb(240, 240, 240)",
+                    borderRadius: "3px",
                   }}
                 >
                   Editar
                 </Button>
               </td>
               <td>
-                <Button variant="danger" style={{ width: "60%" }}>
+                <Button
+                  variant="danger"
+                  style={{
+                    width: "60%",
+                    color: "rgb(240, 240, 240)",
+                    borderRadius: "3px",
+                  }}
+                >
                   Excluir
                 </Button>
               </td>
@@ -152,14 +174,22 @@ function FilesMdDashboard() {
                     width: "60%",
                     backgroundColor: "#17A2B8",
                     border: "none",
-                    color: "white",
+                    color: "rgb(240, 240, 240)",
+                    borderRadius: "3px",
                   }}
                 >
                   Editar
                 </Button>
               </td>
               <td>
-                <Button variant="danger" style={{ width: "60%" }}>
+                <Button
+                  variant="danger"
+                  style={{
+                    width: "60%",
+                    color: "rgb(240, 240, 240)",
+                    borderRadius: "3px",
+                  }}
+                >
                   Excluir
                 </Button>
               </td>
@@ -175,14 +205,23 @@ function FilesMdDashboard() {
                     width: "60%",
                     backgroundColor: "#17A2B8",
                     border: "none",
-                    color: "white",
+                    color: "rgb(240, 240, 240)",
+                    borderRadius: "3px",
                   }}
                 >
                   Editar
                 </Button>
               </td>
               <td>
-                <Button variant="danger" style={{ width: "60%" }}>
+                <Button
+                  variant="danger"
+                  style={{
+                    width: "60%",
+                    border: "none",
+                    color: "rgb(240, 240, 240)",
+                    borderRadius: "3px",
+                  }}
+                >
                   Excluir
                 </Button>
               </td>

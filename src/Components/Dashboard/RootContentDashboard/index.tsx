@@ -3,6 +3,7 @@ import Sidebar from "../Sidebar";
 import { RootContent } from "./styles";
 import { UserContext } from "../../../UserContextStore/UserContext";
 import MdDashboard from "../DashboardPainels/MdDashboard";
+import AiFolderOpen from "../DashboardPainels/AiFolderOpen";
 
 interface INameDashboard {
   name: string;
@@ -18,7 +19,7 @@ function renderComponentByName<Props extends HTMLAttributes<HTMLElement>>(
 ) {
   const components: IComponents = {
     MdDashboard: <MdDashboard />,
-    AiFolderOpen: <h1>DDDDDD</h1>,
+    AiFolderOpen: <AiFolderOpen />,
     GoGraph: <h1>GAAAoGraph</h1>,
     Default: <h1>aAAAAAsdasdasd</h1>,
   };
@@ -31,7 +32,6 @@ function RootContentDashboard({ name }: INameDashboard) {
   const { nameDashboard, userName } = useContext(UserContext);
   const componentToRender = renderComponentByName(nameDashboard ?? "Default");
 
-  console.log("USER", userName)
   return (
     <RootContent>
       <Sidebar />

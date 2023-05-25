@@ -26,7 +26,7 @@ export const HeaderDashboardContainer = styled.div`
       }
 
       .layer-buttons-header {
-        width: 30%;
+        width: auto;
         height: 100%;
         display: flex;
         justify-content: space-between;
@@ -37,10 +37,12 @@ export const HeaderDashboardContainer = styled.div`
         }
 
         .date-layer {
-          width: 85%;
+          width: auto;
+          padding: .9rem;
+          min-width: 350px;
           border: 1px solid rgb(220, 220, 220);
           border-radius: 5px;
-          height: 100%;
+          height: auto;
           display: flex;
           justify-content: center;
           align-items: center;

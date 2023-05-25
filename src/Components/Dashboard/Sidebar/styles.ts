@@ -2,7 +2,9 @@ import styled, { keyframes } from "styled-components";
 
 export const SidebarBox = styled.div`
   background-color: rgb(250, 250, 250);
-  width: 20%;
+  width: 23%;
+  min-width: 400px;
+  max-width: 410px;
   height: 100%;
   box-shadow: rgb(220, 220, 220) 4px 7px 41px 4px;
 
@@ -112,7 +114,6 @@ export const CampaignsSidebar = styled.div`
     .box-campaigns {
       display: flex;
       align-items: center;
-      margin: 0 1rem;
       width: 100%;
       height: auto;
       cursor: pointer;
@@ -138,9 +139,8 @@ export const CampaignsSidebar = styled.div`
       }
 
       p {
-        text-align: center;
         font-family: "Poppins";
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         font-weight: 400;
       }
     }

@@ -44,7 +44,7 @@ function MoreSearched() {
       productDataInformation: [
         {
           idProduct: 1,
-          productName: "aaaaaaaaa",
+          productName: "Expedição Tropical",
         },
       ],
       priceAndPercentageIncrease: [
@@ -58,7 +58,7 @@ function MoreSearched() {
       productDataInformation: [
         {
           idProduct: 1,
-          productName: "aaaaaaaaa",
+          productName: "Aventura nas Montanhas",
         },
       ],
       priceAndPercentageIncrease: [
@@ -72,7 +72,7 @@ function MoreSearched() {
       productDataInformation: [
         {
           idProduct: 1,
-          productName: "aaaaaaaaa",
+          productName: "Caminho Histórico",
         },
       ],
       priceAndPercentageIncrease: [
@@ -86,7 +86,7 @@ function MoreSearched() {
       productDataInformation: [
         {
           idProduct: 1,
-          productName: "aaaaaaaaa",
+          productName: "Praias Paradisíacas",
         },
       ],
       priceAndPercentageIncrease: [
@@ -100,69 +100,58 @@ function MoreSearched() {
 
   return (
     <MoreSearchedBox>
-      <table>
-        <thead>
-          <tr>
-            {bestSellingPacks.map((bestSellingPacksCallBack: any) => {
+      <div className="header-data-packages">
+        {bestSellingPacks.map((bestSellingPacksCallBack: any) => {
+          return (
+            <div className="table-header">
+              <h1>{bestSellingPacksCallBack.title}</h1>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="table-data">
+        <div className="left-cells-table">
+          {BestSellingProducts.map(
+            (bestSellingPacksCallBack: IBestSellingProducts) => {
               return (
-                <th>
-                  <div className="table-header">
-                    <h1>{bestSellingPacksCallBack.title}</h1>
-                  </div>
-                </th>
+                <div className="cell-table">
+                  <GiStarShuriken
+                    style={{
+                      width: "18px",
+                      color: "#b8b8b8",
+                      margin: "-.2rem .5rem",
+                      height: "18px",
+                    }}
+                  />
+                  {bestSellingPacksCallBack.productDataInformation.map(
+                    (product: IPackageInformation) => (
+                      <h1 key={product.idProduct}>{product.productName}</h1>
+                    )
+                  )}
+                </div>
               );
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {BestSellingProducts.map(
-              (bestSellingPacksCallBack: IBestSellingProducts) => {
-                return (
-                  <td>
-                    <div className="body-table">
-                      <GiStarShuriken
-                        style={{
-                          width: "18px",
-                          color: "#dbdbdb",
-                          height: "18px",
-                        }}
-                      />
-                      {bestSellingPacksCallBack.productDataInformation.map(
-                        (product: IPackageInformation) => (
-                          <h1 key={product.idProduct}>{product.productName}</h1>
-                        )
-                      )}
-                    </div>
-                  </td>
-                );
-              }
-            )}
-          </tr>
-          <tr>
-            {BestSellingProducts.map(
-              (bestSellingPacksCallBack: IBestSellingProducts) => {
-                return (
-                  <td>
-                    <div className="body-table">
-                      {bestSellingPacksCallBack.priceAndPercentageIncrease.map(
-                        (priceAndPercentage: IPriceAndPercentageIncrease) => (
-                          <div key={priceAndPercentage.priceProduct}>
-                            <p>
-                              {priceAndPercentage.priceProduct} - 
-                              {priceAndPercentage.percentageIncrease}%
-                            </p>
-                          </div>
-                        )
-                      )}
-                    </div>
-                  </td>
-                );
-              }
-            )}
-          </tr>
-        </tbody>
-      </table>
+            }
+          )}
+        </div>
+        <div className="right-cells-table">
+          {BestSellingProducts.map(
+            (bestSellingPacksCallBack: IBestSellingProducts) => {
+              return (
+                <div className="cell-table">
+                  {bestSellingPacksCallBack.priceAndPercentageIncrease.map(
+                    (priceAndPercentage: IPriceAndPercentageIncrease) => (
+                      <h1>
+                        {priceAndPercentage.priceProduct} - aumento {priceAndPercentage.percentageIncrease}%
+                      </h1>
+                    )
+                  )}
+                </div>
+              );
+            }
+          )}
+        </div>
+      </div>
     </MoreSearchedBox>
   );
 }
