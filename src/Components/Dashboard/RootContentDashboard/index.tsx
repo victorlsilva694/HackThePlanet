@@ -4,6 +4,7 @@ import { RootContent } from "./styles";
 import { UserContext } from "../../../UserContextStore/UserContext";
 import MdDashboard from "../DashboardPainels/MdDashboard";
 import AiFolderOpen from "../DashboardPainels/AiFolderOpen";
+import GoGraph from "../DashboardPainels/GoGraph";
 
 interface INameDashboard {
   name: string;
@@ -20,7 +21,7 @@ function renderComponentByName<Props extends HTMLAttributes<HTMLElement>>(
   const components: IComponents = {
     MdDashboard: <MdDashboard />,
     AiFolderOpen: <AiFolderOpen />,
-    GoGraph: <h1>GAAAoGraph</h1>,
+    GoGraph: <GoGraph />,
     Default: <h1>aAAAAAsdasdasd</h1>,
   };
 

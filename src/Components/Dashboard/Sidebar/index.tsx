@@ -111,17 +111,17 @@ const iconsDataInformation: IconData[] = [
     listSidebarItens: [
       {
         sidebarId: 1,
-        item: "Padrões de viagem",
+        item: "Minhas viagens",
         link: "/info/data",
       },
       {
         sidebarId: 2,
-        item: "Mais vendidas",
+        item: "Próximos destinos",
         link: "/more-seller/data",
       },
       {
         sidebarId: 3,
-        item: "Pacotes de viagem",
+        item: "Cartão de usuário",
         link: "/packages/data",
       },
     ],
