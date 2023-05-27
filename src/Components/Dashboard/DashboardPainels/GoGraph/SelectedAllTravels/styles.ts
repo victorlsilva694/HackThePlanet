@@ -23,22 +23,38 @@ export const SelectedAllTravelsBoxWrapper = styled.div`
 
     .my-travles {
       width: 100%;
-      height: 24rem;
-      box-shadow: rgb(230, 230, 230) 1px 4px 19px;
-    }
+      height: 95%;
+      display: flex;
 
-    .user-details {
-      box-shadow: rgb(230, 230, 230) 1px 4px 19px;
-      width: 100%;
-      height: 24rem;
+      .header-travels-wrapper {
+        width: 100%;
+        display: flex;
+        padding: 2rem;
+        justify-content: space-between;
+        border: 1px solid black;
+        height: 4rem;
+        align-items: center;
+
+        h1 {
+          font-family: "Poppins";
+          font-size: 1.1rem;
+        }
+
+        .search-my-travels {
+          width: 60%;
+          height: 3rem;
+        }
+      }
     }
   }
 
   .user-card-reference {
     min-width: 200px;
     width: 28%;
-    box-shadow: rgb(230, 230, 230) 1px 4px 19px;
-        height: 100%;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 5px;
+    /* box-shadow: rgb(235, 235, 235) 1px 4px 19px; */
+    height: 95%;
 
     @media (max-width: 1490px) {
       display: none;
