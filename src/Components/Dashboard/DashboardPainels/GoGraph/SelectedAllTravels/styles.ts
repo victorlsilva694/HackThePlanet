@@ -29,11 +29,16 @@ export const SelectedAllTravelsBoxWrapper = styled.div`
       .header-travels-wrapper {
         width: 100%;
         display: flex;
-        padding: 2rem;
-        justify-content: space-between;
-        border: 1px solid black;
+        justify-content: left;
+        border-bottom: 1px solid rgb(230, 230, 230);
         height: 4rem;
         align-items: center;
+
+        .buttons-data-travels {
+          width: 20%;
+          border: 1px solid black;
+          height: 4rem;
+        }
 
         h1 {
           font-family: "Poppins";

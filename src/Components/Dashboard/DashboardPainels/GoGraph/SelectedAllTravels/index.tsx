@@ -3,17 +3,40 @@ import { SelectedAllTravelsBoxWrapper } from "./styles";
 import { BsSearch } from "react-icons/bs";
 
 function SelectedAllTravels() {
-  interface IMyTravels {
+  interface IMyTravelsButtonsData {
     id: number;
-    buttonsClass: string;
+    buttonName: string;
   }
+
+  const myTravelsButtonsData: IMyTravelsButtonsData[] = [
+    {
+      id: 1,
+      buttonName: "Viagens em andamento",
+    },
+    { 
+      id: 2,
+      buttonName: "Viagens em Planejamento",
+    },
+    {
+      id: 3,
+      buttonName: "Viagens Profissionais",
+    },
+  ];
 
   return (
     <SelectedAllTravelsBoxWrapper>
       <div className="body-items-travels-referece">
         <div className="my-travles">
           <div className="header-travels-wrapper">
+            {
+              myTravelsButtonsData.map((myTravelsButtonsDataCallBack: IMyTravelsButtonsData) => {
+                return(
+                  <div className="buttons-data-travels">
 
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
       </div>
