@@ -35,9 +35,19 @@ export const SelectedAllTravelsBoxWrapper = styled.div`
         align-items: center;
 
         .buttons-data-travels {
-          width: 20%;
-          border: 1px solid black;
+          min-width: 200px;
           height: 4rem;
+          /* border-bottom: 1px solid rgb(190, 190, 190); */
+
+          button {
+            background-color: transparent;
+            font-size: .9rem;
+            padding: 1rem;
+            font-family: 'Poppins';
+            border: transparent;
+            width: 100%;
+            height: 4rem;
+          }
         }
 
         h1 {

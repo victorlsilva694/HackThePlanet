@@ -13,7 +13,7 @@ function SelectedAllTravels() {
       id: 1,
       buttonName: "Viagens em andamento",
     },
-    { 
+    {
       id: 2,
       buttonName: "Viagens em Planejamento",
     },
@@ -28,15 +28,15 @@ function SelectedAllTravels() {
       <div className="body-items-travels-referece">
         <div className="my-travles">
           <div className="header-travels-wrapper">
-            {
-              myTravelsButtonsData.map((myTravelsButtonsDataCallBack: IMyTravelsButtonsData) => {
-                return(
+            {myTravelsButtonsData.map(
+              (myTravelsButtonsDataCallBack: IMyTravelsButtonsData) => {
+                return (
                   <div className="buttons-data-travels">
-
+                    <button>{myTravelsButtonsDataCallBack.buttonName}</button>
                   </div>
-                )
-              })
-            }
+                );
+              }
+            )}
           </div>
         </div>
       </div>
