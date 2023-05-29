@@ -1,6 +1,8 @@
 import { Form, InputGroup } from "react-bootstrap";
 import { SelectedAllTravelsBoxWrapper } from "./styles";
 import { BsSearch } from "react-icons/bs";
+import { useState } from "react";
+import InProgressTravels from "./InProgressTravels";
 
 function SelectedAllTravels() {
   interface IMyTravelsButtonsData {
@@ -23,6 +25,14 @@ function SelectedAllTravels() {
     },
   ];
 
+  const [buttonSelected, setButtonSelected] = useState<string>(
+    myTravelsButtonsData[0].buttonName
+  );
+
+  function handleClick(buttonNameAddClass: string) {
+    setButtonSelected(buttonNameAddClass);
+  }
+
   return (
     <SelectedAllTravelsBoxWrapper>
       <div className="body-items-travels-referece">
@@ -31,13 +41,28 @@ function SelectedAllTravels() {
             {myTravelsButtonsData.map(
               (myTravelsButtonsDataCallBack: IMyTravelsButtonsData) => {
                 return (
-                  <div className="buttons-data-travels">
-                    <button>{myTravelsButtonsDataCallBack.buttonName}</button>
+                  <div
+                    onClick={() =>
+                      handleClick(myTravelsButtonsDataCallBack.buttonName)
+                    }
+                    className="buttons-data-travels"
+                  >
+                    <button
+                      className={
+                        buttonSelected ===
+                        myTravelsButtonsDataCallBack.buttonName
+                          ? "add-border"
+                          : ""
+                      }
+                    >
+                      {myTravelsButtonsDataCallBack.buttonName}
+                    </button>
                   </div>
                 );
               }
             )}
           </div>
+          <InProgressTravels />
         </div>
       </div>
 

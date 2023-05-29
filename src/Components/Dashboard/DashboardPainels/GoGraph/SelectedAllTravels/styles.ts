@@ -25,6 +25,7 @@ export const SelectedAllTravelsBoxWrapper = styled.div`
       width: 100%;
       height: 95%;
       display: flex;
+      flex-direction: column;
 
       .header-travels-wrapper {
         width: 100%;
@@ -37,15 +38,19 @@ export const SelectedAllTravelsBoxWrapper = styled.div`
         .buttons-data-travels {
           min-width: 200px;
           height: 4rem;
-          /* border-bottom: 1px solid rgb(190, 190, 190); */
+
+          .add-border {
+            border-bottom: 1px solid rgb(190, 190, 190);
+          }
 
           button {
             background-color: transparent;
-            font-size: .9rem;
+            font-size: 0.9rem;
             padding: 1rem;
-            font-family: 'Poppins';
+            font-family: "Poppins";
             border: transparent;
             width: 100%;
+            color: rgb(80, 80, 80);
             height: 4rem;
           }
         }
