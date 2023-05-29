@@ -3,6 +3,7 @@ import { SelectedAllTravelsBoxWrapper } from "./styles";
 import { BsSearch } from "react-icons/bs";
 import { useState } from "react";
 import InProgressTravels from "./InProgressTravels";
+import CardUser from "./CardUser";
 
 function SelectedAllTravels() {
   interface IMyTravelsButtonsData {
@@ -66,7 +67,9 @@ function SelectedAllTravels() {
         </div>
       </div>
 
-      <div className="user-card-reference"></div>
+      <div className="user-card-reference">
+        <CardUser />
+      </div>
     </SelectedAllTravelsBoxWrapper>
   );
 }
