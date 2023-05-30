@@ -7,7 +7,7 @@ import DOMPurify from "dompurify";
 import axios from "axios";
 import { redirect, Navigate, useNavigate } from "react-router-dom";
 import React, { useContext, useEffect } from "react";
-import { UserContext } from "../../../UserContextStore/UserContext";
+import { AuthContext } from "../../../UserContextStore/AuthContext";
 
 function LoginGenericPage() {
   interface UserData {
@@ -25,6 +25,7 @@ function LoginGenericPage() {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   function handleInputChange(event: any, fieldName: keyof UserData) {
     setUserState({
@@ -32,44 +33,13 @@ function LoginGenericPage() {
       [fieldName]: DOMPurify.sanitize(event.target.value),
     });
   }
-  const navigate = useNavigate();
 
-  const {
-    setUserDataName,
-    setterUserMail,
-    setterUserName,
-    userDataName,
-    setUserEmail,
-    userEmail,
-  } = useContext(UserContext);
+  const auth = useContext(AuthContext);
 
-  useEffect(() => {
-    console.log(userEmail);
-  }, [userEmail]);
-
-  useEffect(() => {
-    console.log(userDataName);
-  }, [userDataName]);
-
-  async function fetchRegisterUserData() {
-    const sanitizedUserData = {
-      email: DOMPurify.sanitize(userState.email),
-      password: DOMPurify.sanitize(userState.password),
-    };
-
-    const response = await axios.post<LoginResponse>(
-      "http://localhost:8000/api/login",
-      sanitizedUserData
-    );
-    const { username, email, token } = response.data;
-
-    setUserDataName(username);
-    setUserEmail(email);
-
-    // localStorage.setItem("token_ga_profile", token);
-
-    // navigate("http://localhost:5173/dashboard", { replace: true });
-  }
+  const handleLogin = async () => {
+    await auth.signin(userState.email, userState.password);
+    navigate('/dashboard');
+  };
 
   return (
     <RootContainerPage>
@@ -117,7 +87,7 @@ function LoginGenericPage() {
                 <a href="/register">Registre-se agora</a>
               </Form.Group>
               <Button
-                onClick={fetchRegisterUserData}
+                onClick={handleLogin}
                 style={{
                   backgroundColor: "#2d4550",
                   width: "100%",

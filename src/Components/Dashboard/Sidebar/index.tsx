@@ -8,6 +8,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { UserContext } from "../../../UserContextStore/UserContext";
 import React, { useContext } from "react";
+import { AuthContext } from "../../../UserContextStore/AuthContext";
 
 interface IObjectListSidebarItens {
   sidebarId: number;
@@ -161,17 +162,18 @@ const iconsDataInformation: IconData[] = [
 
 function Sidebar() {
   const [iconSelectedId, setIconSelectedId] = useState<number | null>(null);
-  const [nameSelectedIcon, setNameSelectedIcon] = useState<string | null>(null);
-  const { setId, setNameDashboard } = useContext(UserContext);
+  const [nameSelectedIcon, setNameSelectedIcon] = useState<string>('');
+  const { setterDashBoardName } = useContext(AuthContext);
+
+  
 
   function setIconForUsing(
     idParamIconCallBack: number,
     nameParamIconCallBack: string
   ) {
     setIconSelectedId(idParamIconCallBack);
-    setNameDashboard(nameSelectedIcon);
+    setterDashBoardName(nameSelectedIcon);
     setNameSelectedIcon(nameParamIconCallBack);
-    setId(idParamIconCallBack);
   }
 
   return (

@@ -1,6 +1,6 @@
-import { UserContext } from "../../../UserContextStore/UserContext";
+import { AuthContext } from "../../../UserContextStore/AuthContext";
 import { HeaderDashboardContainer } from "./styles";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 function DashboardHeader() {
 
@@ -8,11 +8,6 @@ function DashboardHeader() {
     currentDate: Date;
   }
 
-  const { userDataName, setUserEmail } = useContext(UserContext);
-
-  function print() {
-    console.log(userDataName)
-  }
 
   const [currentNewDate, setCurrentNewDate] = useState<IStoreDate>({
     currentDate: new Date(),
@@ -22,12 +17,15 @@ function DashboardHeader() {
     "pt-BR",
     { timeZone: "UTC" }
   );
+  const { user } = useContext(AuthContext);
+  console.log(user)
+
 
   return (
     <HeaderDashboardContainer>
       <div className="content-data-dashboard">
         <div onClick={print} className="layer-title-dashboard">
-          <h1>Seja Bem vindo(a) Novamente - { userDataName } </h1>
+            <h1>Seja Bem-vindo(a) Novamente - { user?.name }</h1>
 
           <div className="layer-buttons-header">
             <div className="date-layer">

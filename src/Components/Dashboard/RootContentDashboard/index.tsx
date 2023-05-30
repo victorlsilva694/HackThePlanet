@@ -1,10 +1,10 @@
 import { useContext, HTMLAttributes } from "react";
 import Sidebar from "../Sidebar";
 import { RootContent } from "./styles";
-import { UserContext } from "../../../UserContextStore/UserContext";
 import MdDashboard from "../DashboardPainels/MdDashboard";
 import AiFolderOpen from "../DashboardPainels/AiFolderOpen";
 import GoGraph from "../DashboardPainels/GoGraph";
+import { AuthContext } from "../../../UserContextStore/AuthContext";
 
 interface INameDashboard {
   name: string;
@@ -30,8 +30,11 @@ function renderComponentByName<Props extends HTMLAttributes<HTMLElement>>(
 
 
 function RootContentDashboard({ name }: INameDashboard) {
-  const { nameDashboard, userName } = useContext(UserContext);
+  const { user, nameDashboard } = useContext(AuthContext);
+
   const componentToRender = renderComponentByName(nameDashboard ?? "Default");
+
+  console.log(nameDashboard)
 
   return (
     <RootContent>

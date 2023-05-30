@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { createContext, useState } from "react";
+import { useEffect } from "react";
 
 interface UserContextData {
   id: number | null;
@@ -6,11 +8,10 @@ interface UserContextData {
   nameDashboard: string | null;
   setNameDashboard: (nameDashboard: string | null) => void;
   userEmail: string | null;
-  setterUserName: (userNameData: string) => void;
   setUserEmail: (email: string | null) => void;
   userDataName: string | null;
-  setterUserMail: (setterUserMail: string) => void;
   setUserDataName: (name: string | null) => void;
+  authenticateUserData: (emailParam: string, passwordParam: string) => void;
 }
 
 interface childrenType {
@@ -23,12 +24,17 @@ export const UserContext = createContext<UserContextData>({
   nameDashboard: null,
   setNameDashboard: () => {},
   userEmail: null,
-  setterUserMail: (setterUserMail) => {},
   setUserEmail: (email) => {},
   userDataName: null,
-  setterUserName: (userNameData) => {},
   setUserDataName: (username) => {},
+  authenticateUserData: (emailParam: string, passwordParam: string) => {},
 });
+
+interface LoginResponse {
+  username: string;
+  token: string;
+  email: string;
+}
 
 const UserContextProvider: React.FC<childrenType> = ({ children }) => {
   const [id, setId] = useState<number | null>(null);
@@ -36,30 +42,37 @@ const UserContextProvider: React.FC<childrenType> = ({ children }) => {
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [userDataName, setUserDataName] = useState<string | null>(null);
 
+  async function authenticateUserData(
+    emailParam: string,
+    passwordParam: string
+  ) {
+    try {
+      const response = await axios.post<LoginResponse>(
+        "http://localhost:8000/api/login",
+        { email: emailParam, password: passwordParam }
+      );
+      const { username, email, token } = response.data;
 
-  const setterUserMail = (userMail: string) => {
-    setUserEmail(userMail);
-    console.log(userEmail)
-  };
-
-  const setterUserName = (userName: string) => {
-    setUserDataName(userName);
-    console.log(userDataName)
-  };
+      setUserDataName(username);
+      setUserEmail(email);
+      localStorage.setItem("token_ga_profile", token);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <UserContext.Provider
       value={{
         id,
-        setterUserName,
+        authenticateUserData,
         setId,
-        nameDashboard,  
+        nameDashboard,
         setNameDashboard,
         userEmail,
         setUserEmail,
         userDataName,
         setUserDataName,
-        setterUserMail
       }}
     >
       {children}
