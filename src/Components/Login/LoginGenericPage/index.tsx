@@ -18,6 +18,7 @@ function LoginGenericPage() {
   interface LoginResponse {
     username: string;
     token: string;
+    email: string;
   }
 
   const [userState, setUserState] = useState<UserData>({
@@ -25,43 +26,49 @@ function LoginGenericPage() {
     password: "",
   });
 
-  const { userName, setUserName} = useContext(UserContext);
-  const navigate = useNavigate();
-  const [userNameLocalData, setUserNameLocalData] = useState("");
-  const [token, setToken] = useState("");
-
-  type FormControlElement =
-    | HTMLInputElement
-    | HTMLSelectElement
-    | HTMLTextAreaElement;
-
-  function handleInputChange(
-    event: React.ChangeEvent<FormControlElement>,
-    fieldName: keyof UserData
-  ) {
+  function handleInputChange(event: any, fieldName: keyof UserData) {
     setUserState({
       ...userState,
       [fieldName]: DOMPurify.sanitize(event.target.value),
     });
   }
+  const navigate = useNavigate();
+
+  const {
+    setUserDataName,
+    setterUserMail,
+    setterUserName,
+    userDataName,
+    setUserEmail,
+    userEmail,
+  } = useContext(UserContext);
+
+  useEffect(() => {
+    console.log(userEmail);
+  }, [userEmail]);
+
+  useEffect(() => {
+    console.log(userDataName);
+  }, [userDataName]);
 
   async function fetchRegisterUserData() {
     const sanitizedUserData = {
       email: DOMPurify.sanitize(userState.email),
       password: DOMPurify.sanitize(userState.password),
     };
+
     const response = await axios.post<LoginResponse>(
       "http://localhost:8000/api/login",
       sanitizedUserData
     );
-    const { username, token } = response.data;
+    const { username, email, token } = response.data;
 
-    localStorage.setItem("token_ga_profile", token);
-    localStorage.setItem("userName", username);
-    setUserNameLocalData(response.data.username);
-    setUserName(username);
+    setUserDataName(username);
+    setUserEmail(email);
 
-    navigate("/dashboard");
+    // localStorage.setItem("token_ga_profile", token);
+
+    // navigate("http://localhost:5173/dashboard", { replace: true });
   }
 
   return (

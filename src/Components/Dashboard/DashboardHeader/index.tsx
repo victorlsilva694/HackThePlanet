@@ -3,10 +3,15 @@ import { HeaderDashboardContainer } from "./styles";
 import React, { useContext, useState } from "react";
 
 function DashboardHeader() {
-  const userName = localStorage.getItem("userName");
 
   interface IStoreDate {
     currentDate: Date;
+  }
+
+  const { userDataName, setUserEmail } = useContext(UserContext);
+
+  function print() {
+    console.log(userDataName)
   }
 
   const [currentNewDate, setCurrentNewDate] = useState<IStoreDate>({
@@ -21,8 +26,8 @@ function DashboardHeader() {
   return (
     <HeaderDashboardContainer>
       <div className="content-data-dashboard">
-        <div className="layer-title-dashboard">
-          <h1>Seja Bem vindo(a) Novamente - {userName} </h1>
+        <div onClick={print} className="layer-title-dashboard">
+          <h1>Seja Bem vindo(a) Novamente - { userDataName } </h1>
 
           <div className="layer-buttons-header">
             <div className="date-layer">

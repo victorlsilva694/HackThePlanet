@@ -5,10 +5,12 @@ interface UserContextData {
   setId: (id: number | null) => void;
   nameDashboard: string | null;
   setNameDashboard: (nameDashboard: string | null) => void;
-  email: string | null;
-  setEmail: (email: string | null) => void;
-  userName: string | null;
-  setUserName: (name: string | null) => void;
+  userEmail: string | null;
+  setterUserName: (userNameData: string) => void;
+  setUserEmail: (email: string | null) => void;
+  userDataName: string | null;
+  setterUserMail: (setterUserMail: string) => void;
+  setUserDataName: (name: string | null) => void;
 }
 
 interface childrenType {
@@ -20,29 +22,44 @@ export const UserContext = createContext<UserContextData>({
   setId: () => {},
   nameDashboard: null,
   setNameDashboard: () => {},
-  email: null,
-  setEmail: () => {},
-  userName: null,
-  setUserName: () => {},
+  userEmail: null,
+  setterUserMail: (setterUserMail) => {},
+  setUserEmail: (email) => {},
+  userDataName: null,
+  setterUserName: (userNameData) => {},
+  setUserDataName: (username) => {},
 });
 
 const UserContextProvider: React.FC<childrenType> = ({ children }) => {
   const [id, setId] = useState<number | null>(null);
   const [nameDashboard, setNameDashboard] = useState<string | null>(null);
-  const [email, setEmail] = useState<string | null>(null);
-  const [userName, setUserName] = useState<string | null>(null);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [userDataName, setUserDataName] = useState<string | null>(null);
+
+
+  const setterUserMail = (userMail: string) => {
+    setUserEmail(userMail);
+    console.log(userEmail)
+  };
+
+  const setterUserName = (userName: string) => {
+    setUserDataName(userName);
+    console.log(userDataName)
+  };
 
   return (
     <UserContext.Provider
       value={{
         id,
+        setterUserName,
         setId,
-        nameDashboard,
+        nameDashboard,  
         setNameDashboard,
-        email,
-        setEmail,
-        userName,
-        setUserName,
+        userEmail,
+        setUserEmail,
+        userDataName,
+        setUserDataName,
+        setterUserMail
       }}
     >
       {children}

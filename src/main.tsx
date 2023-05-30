@@ -85,8 +85,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
-  <AxiosProvider>
-    <UserContextProvider>
+  <UserContextProvider>
+    <AxiosProvider>
       <React.StrictMode>
         <GlobalStyle />
         <BrowserRouter>
@@ -98,8 +98,9 @@ ReactDOM.render(
           </Routes>
         </BrowserRouter>
       </React.StrictMode>
-    </UserContextProvider>
-  </AxiosProvider>,
+    </AxiosProvider>
+    ,
+  </UserContextProvider>,
   document.getElementById("root")
 );
 
