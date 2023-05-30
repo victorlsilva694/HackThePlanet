@@ -16,11 +16,11 @@ export const AuthProvider: React.FC<childrenType> = ({ children }) => {
       const storageData = localStorage.getItem("token_ga_profile");
       if (storageData) {
         const data = await api.validateToken(storageData);
-        if (data.user) {
+        if (data.decoded.name) {
           setUser({
-            email: data.email,
-            name: data.username,
-            id: data.id,
+            email: data.decoded.email,
+            name: data.decoded.name,
+            id: data.decoded.id,
           });
         }
       }
@@ -30,17 +30,12 @@ export const AuthProvider: React.FC<childrenType> = ({ children }) => {
 
   const signin = async (email: string, password: string) => {
     const data = await api.signin(email, password);
-
-    console.log(data);
     if (data.email && data.token && data.username) {
       setUser({
         email: data.email,
         name: data.username,
         id: data.id,
       });
-
-      console.log(user);
-
       setToken(data.token);
       return true;
     }
@@ -49,8 +44,6 @@ export const AuthProvider: React.FC<childrenType> = ({ children }) => {
 
   const setterDashBoardName = (dashboardName: string) => {
     setNameDashboard(dashboardName);
-
-    console.log(nameDashboard);
     return dashboardName;
   };
 

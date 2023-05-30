@@ -18,7 +18,6 @@ function DashboardHeader() {
     { timeZone: "UTC" }
   );
   const { user } = useContext(AuthContext);
-  console.log(user)
 
 
   return (

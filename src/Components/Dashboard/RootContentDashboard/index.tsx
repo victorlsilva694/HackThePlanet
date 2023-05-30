@@ -33,9 +33,6 @@ function RootContentDashboard({ name }: INameDashboard) {
   const { user, nameDashboard } = useContext(AuthContext);
 
   const componentToRender = renderComponentByName(nameDashboard ?? "Default");
-
-  console.log(nameDashboard)
-
   return (
     <RootContent>
       <Sidebar />

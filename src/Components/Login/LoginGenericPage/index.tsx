@@ -25,6 +25,7 @@ function LoginGenericPage() {
     email: "",
     password: "",
   });
+  
   const navigate = useNavigate();
 
   function handleInputChange(event: any, fieldName: keyof UserData) {
