@@ -32,13 +32,21 @@ export const CardUserTravelPrice = styled.div`
     height: 100%;
   }
 
-
-
   .user-email-item-card {
     width: 95%;
     margin: auto;
     height: 4.5rem;
     border-radius: 5px;
-    background-color: rgb(244, 244, 244);
+    background-color: rgb(250, 250, 250);
+
+    .user-image {
+      width: 4rem;
+      position: relative;
+      top: .2rem;
+      border-radius: 4rem;
+      background-color: rgb(230, 230, 230);
+      margin: 1rem;
+      height: 4rem;
+    }
   }
 `;
