@@ -59,15 +59,14 @@ export const CardStorageData = styled.div`
       h1 {
         text-align: left;
         margin: 8px;
-        font-size: 1.1rem;
-        font-family: "Poppins";
-        font-weight: 600;
+        font-size: 1.2rem;
+        font-family: "Roboto";
       }
 
       p {
         margin: 0 0.5rem;
-        font-size: 1rem;
-        font-family: "Raleway";
+        font-size: .9rem;
+        font-family: "Roboto";
       }
     }
   }
@@ -88,7 +87,7 @@ export const CardStorageData = styled.div`
     p {
       margin: .5rem 0.5rem;
       font-size: .9rem;
-      font-family: "Poppins";
+      font-family: "Roboto";
     }   
   }
 `;

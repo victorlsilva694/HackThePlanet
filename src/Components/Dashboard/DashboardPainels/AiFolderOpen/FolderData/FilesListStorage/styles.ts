@@ -6,9 +6,8 @@ export const FilesListDataStorageStyles = styled.div`
   padding: 1rem;
 
   h1 {
-    font-family: "Poppins";
-    font-weight: 600;
-    font-size: 1.3rem;
+    font-family: "Roboto";
+    font-size: 1.2rem;
     margin: 1.3rem;
   }
 
@@ -52,8 +51,8 @@ export const FilesListDataStorageStyles = styled.div`
         }
 
         h1 {
-          font-size: 1rem;
-          font-family: 'Poppins';
+          font-size: 1.1rem;
+          font-family: 'Roboto';
         }
       }
 

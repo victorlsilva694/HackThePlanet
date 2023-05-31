@@ -5,10 +5,12 @@ export const CardUserTravelPrice = styled.div`
   height: 4rem;
 
   .card-user-data-travel-cupon {
-    width: 100%;
+    width: 95%;
+    margin: auto;
     height: 100%;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid rgb(230, 230, 230);
   }
 
   .title-card-user-travel {
@@ -18,9 +20,9 @@ export const CardUserTravelPrice = styled.div`
     align-items: center;
 
     h1 {
-      font-size: 1rem;
+      font-size: 1.1rem;
       margin: 1rem;
-      font-family: "Poppins";
+      font-family: "Roboto";
     }
   }
 
@@ -34,19 +36,14 @@ export const CardUserTravelPrice = styled.div`
 
   .user-email-item-card {
     width: 95%;
+    padding: 1rem;
     margin: auto;
-    height: 4.5rem;
-    border-radius: 5px;
-    background-color: rgb(250, 250, 250);
+    height: 20rem;
 
-    .user-image {
-      width: 4rem;
-      position: relative;
-      top: .2rem;
-      border-radius: 4rem;
-      background-color: rgb(230, 230, 230);
-      margin: 1rem;
-      height: 4rem;
+    h1 {
+      color: rgb(60, 60, 60);
+      font-family: "Roboto";
+      font-size: 1.1rem;
     }
   }
 `;

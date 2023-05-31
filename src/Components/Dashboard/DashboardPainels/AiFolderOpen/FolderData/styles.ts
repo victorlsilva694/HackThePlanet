@@ -36,10 +36,8 @@ export const HeaderButtons = styled.div`
     }
 
     h1 {
-      font-family: "Poppins";
-      font-weight: 600;
-      margin: 2rem;
-      font-size: 1rem;
+      font-family: "Roboto";
+      font-size: 1.1rem;
     }
   }
 
@@ -62,7 +60,7 @@ export const HeaderButtons = styled.div`
       padding: 0.9rem;
 
       span {
-        font-family: "Poppins";
+        font-family: "Roboto";
         font-size: 1rem;
         margin: -0.1rem;
       }
@@ -81,8 +79,8 @@ export const HeaderButtons = styled.div`
       align-items: center;
 
       span {
-        font-family: "Poppins";
-        font-size: 1rem;
+        font-family: "Roboto";
+        font-size: 1.06rem;
         color: rgb(230, 230, 230);
         margin: -0.1rem;
       }

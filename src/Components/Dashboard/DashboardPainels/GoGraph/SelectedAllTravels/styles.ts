@@ -45,9 +45,9 @@ export const SelectedAllTravelsBoxWrapper = styled.div`
 
           button {
             background-color: transparent;
-            font-size: 0.9rem;
+            font-size: 1rem;
             padding: 1rem;
-            font-family: "Poppins";
+            font-family: "Roboto";
             border: transparent;
             width: 100%;
             color: rgb(80, 80, 80);
@@ -56,8 +56,8 @@ export const SelectedAllTravelsBoxWrapper = styled.div`
         }
 
         h1 {
-          font-family: "Poppins";
-          font-size: 1.1rem;
+          font-family: "Roboto";
+          font-size: 1.2rem;
         }
 
         .search-my-travels {

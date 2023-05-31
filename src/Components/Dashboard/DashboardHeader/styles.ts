@@ -48,10 +48,10 @@ export const HeaderDashboardContainer = styled.div`
           align-items: center;
 
           h1 {
-            font-family: "Raleway";
+            font-family: "Roboto";
             font-size: 1rem;
             margin-top: 0.5rem;
-            color: rgb(160, 160, 160);
+            color: rgb(90, 90, 90);
 
             @media (max-width: 1280px) {
               font-size: 1rem;

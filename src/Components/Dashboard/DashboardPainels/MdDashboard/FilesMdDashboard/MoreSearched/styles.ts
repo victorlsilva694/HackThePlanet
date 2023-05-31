@@ -18,11 +18,10 @@ export const MoreSearchedBox = styled.div`
 
       h1 {
         margin: 2rem;
-        font-size: 1.2rem;
-        color: rgb(90, 90, 90);
+        font-size: 1rem;
+        color: rgb(60, 60, 60);
         display: flex;
-        font-family: "Raleway";
-        font-weight: 500;
+        font-family: "Roboto";
       }
 
       @media (max-width: 1690px) {
@@ -54,7 +53,7 @@ export const MoreSearchedBox = styled.div`
         h1 {
           font-size: 0.9rem;
           color: rgb(80, 80, 80);
-          font-family: "Raleway";
+          font-family: "Roboto";
           margin: -0.2rem 2rem;
         }
       }
@@ -72,9 +71,9 @@ export const MoreSearchedBox = styled.div`
         height: 2.8rem;
 
         h1 {
-          font-size: 1rem;
+          font-size: 0.9rem;
           color: rgb(80, 80, 80);
-          font-family: "Poppins";
+          font-family: "Roboto";
           margin: -0.2rem 0rem;
         }
       }

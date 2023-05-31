@@ -44,7 +44,7 @@ export const DashBoardRootPainelData = styled.div`
           justify-content: space-between;
 
           h1 {
-            font-family: "Raleway";
+            font-family: "Roboto";
             font-size: 1.2rem;
             margin: 1.5rem 0;
             color: rgb(90, 90, 110);
@@ -70,8 +70,8 @@ export const DashBoardRootPainelData = styled.div`
       justify-content: space-between;
 
       h1 {
-        font-family: "Raleway";
-        font-size: 1.2rem;
+        font-family: "Roboto";
+        font-size: 1.1rem;
         margin: 1.5rem 0;
         color: rgb(90, 90, 110);
       }
@@ -104,8 +104,7 @@ export const DashBoardRootPainelData = styled.div`
               justify-content: space-around;
               height: 3rem;
               display: flex;
-              font-family: "Raleway";
-              font-weight: 600;
+              font-family: "Roboto";
 
               @media (max-width: 1690px) {
                 font-size: 0.9rem;
@@ -118,6 +117,7 @@ export const DashBoardRootPainelData = styled.div`
           }
         }
       }
+
       tbody {
         tr {
           td {
@@ -125,7 +125,8 @@ export const DashBoardRootPainelData = styled.div`
             height: 3rem;
             margin: auto;
             text-align: center;
-            font-family: "Poppins";
+            font-family: "Roboto";
+
             @media (max-width: 1690px) {
               font-size: 0.9rem;
             }
