@@ -11,7 +11,7 @@ import {
 } from "recharts";
 
 function PayoutCharts() {
-  const data = [
+  const dataa = [
     { name: "Janeiro", amt: '90000' },
     { name: "Fevereiro", amt: '1' },
     { name: "Março", amt: 1 },
@@ -21,11 +21,11 @@ function PayoutCharts() {
 
   return (
     <div style={{ margin: '1rem' }}>
-      <LineChart width={600} height={230} data={...data}>
-        <XAxis dataKey="name" />
-        <YAxis />
-        <CartesianGrid stroke="#cccccc" strokeDasharray="5 5" />
-        <Line type="monotone" dataKey="amt" stroke="#747474" />
+      <LineChart width={600}  height={230} data={...dataa}>
+        <XAxis dataKey="name" stroke="#979797"  />
+        <YAxis stroke="#979797" />
+        <CartesianGrid stroke="" strokeDasharray="5 5" />
+        <Line type="monotone" dataKey="amt" stroke="#d6d6d6" />
       </LineChart>
     </div>
   );

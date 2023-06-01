@@ -1,10 +1,27 @@
 import { Button, FloatingLabel, Form, InputGroup } from "react-bootstrap";
-import { DashBoardRootPainelData } from "./styles";
+import { DashBoardRootPainelData, HeaderModal } from "./styles";
 import { BsSearch } from "react-icons/bs";
 import { BsArrowsExpand } from "react-icons/bs";
+import { GoGraph } from "react-icons/go";
+import { SiAlwaysdata } from "react-icons/si";
+import { IoMdAdd } from "react-icons/io";
 import { IconType } from "react-icons";
 import PayoutCharts from "./PayoutCharts";
 import MoreSearched from "./MoreSearched";
+import ReactModal from "react-modal";
+import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
+
+const slideInRight = keyframes`
+from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+to {
+  transform: translateX(0);
+  opacity: 1;
+}
+`;
 
 function FilesMdDashboard() {
   interface TableHeaderItem {
@@ -47,19 +64,77 @@ function FilesMdDashboard() {
     },
   ];
 
+  const customStyles = {
+    content: {
+      top: "40%",
+      left: "79%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-40%",
+      transform: "translate(-40%, -40%)",
+      width: "35%",
+      height: "100%",
+      backgroundColor: "rgb(245, 245, 245)",
+    },
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.5)", // Define o fundo preto do overlay
+    },
+  };
+
+  ReactModal.setAppElement("#root");
+  const [isOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <DashBoardRootPainelData>
+      <ReactModal
+        isOpen={isOpen}
+        style={customStyles}
+        onRequestClose={closeModal}
+      >
+        <HeaderModal>
+          <div className="modal-flag"></div>
+        </HeaderModal>
+      </ReactModal>
+
       <div className="body-header-data">
         <div className="travel-data">
           <div className="values-travel">
             <div className="header-box-travel-layer">
               <h1>Valores Investidos </h1>
+
+              <div className="add-new-package">
+                <GoGraph
+                  style={{
+                    width: "22px",
+                    color: "rgb(140, 140, 140)",
+                    height: "2rem",
+                  }}
+                />
+              </div>
             </div>
             <PayoutCharts />
           </div>
           <div className="values-travel">
             <div className="header-box-travel-layer">
               <h1>Atividades Mais buscadas</h1>
+
+              <div className="add-new-package">
+                <SiAlwaysdata
+                  style={{
+                    width: "22px",
+                    color: "rgb(140, 140, 140)",
+                    height: "2rem",
+                  }}
+                />
+              </div>
             </div>
             <MoreSearched />
           </div>
@@ -67,10 +142,10 @@ function FilesMdDashboard() {
       </div>
       <div className="travels-selected">
         <div className="header-box-travel-layer">
-          <h1>Avisos Importantes e últimas transações</h1>
+          <h1>Meus Pacotes e transações de viagens</h1>
 
           <div className="search-box-content">
-            <InputGroup>
+            <InputGroup style={{ width: "90%" }}>
               <Form.Control
                 style={{ border: "1px solid rgb(230,230,230)" }}
                 placeholder="Pesquise seus planos ativos"
@@ -84,6 +159,16 @@ function FilesMdDashboard() {
                 <BsSearch style={{ height: "2rem" }} />
               </InputGroup.Text>
             </InputGroup>
+
+            <div className="add-new-package" onClick={openModal}>
+              <IoMdAdd
+                style={{
+                  width: "22px",
+                  color: "rgb(140, 140, 140)",
+                  height: "2rem",
+                }}
+              />
+            </div>
           </div>
         </div>
         <table>

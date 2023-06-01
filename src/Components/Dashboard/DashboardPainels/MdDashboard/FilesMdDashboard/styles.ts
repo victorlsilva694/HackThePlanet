@@ -1,10 +1,35 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import ReactModal from "react-modal";
+
+export const HeaderModal = styled.div`
+  width: 100%;
+  height: 5rem;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+
+  .modal-flag {
+    width: 100%;
+  }
+`;
 
 export const DashBoardRootPainelData = styled.div`
   width: 100%;
   padding: 1rem;
   height: 88%;
   overflow: scroll;
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .body-header-data {
     width: 100%;
@@ -25,9 +50,8 @@ export const DashBoardRootPainelData = styled.div`
 
       .values-travel {
         width: 45%;
-        border: 1px solid rgb(240, 240, 240);
         border-radius: 5px;
-        box-shadow: rgb(230, 230, 230) 2px 2px 17px 1px;
+        box-shadow: rgb(240, 240, 240) 2px 2px 17px 1px;
         height: 100%;
 
         @media (max-width: 1280px) {
@@ -36,6 +60,8 @@ export const DashBoardRootPainelData = styled.div`
         }
 
         .header-box-travel-layer {
+          display: flex;
+          justify-content: space-between;
           width: 90%;
           margin: auto;
           height: 4rem;
@@ -49,6 +75,24 @@ export const DashBoardRootPainelData = styled.div`
             margin: 1.5rem 0;
             color: rgb(90, 90, 110);
           }
+
+          .add-new-package {
+            width: 9%;
+            height: 75%;
+            margin: 0.5rem 0;
+            border: 1px solid rgb(220, 220, 220);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+          }
+
+          .add-new-package:hover {
+            border: none;
+            transition: 0.5s;
+            background-color: rgb(240, 240, 240);
+          }
         }
       }
     }
@@ -56,9 +100,8 @@ export const DashBoardRootPainelData = styled.div`
 
   .travels-selected {
     width: 95%;
-    border: 1px solid rgb(240, 240, 240);
     height: 25rem;
-    box-shadow: rgb(230, 230, 230) 2px 2px 17px 1px;
+    box-shadow: rgb(240, 240, 240) 2px 2px 17px 1px;
     margin: 2rem auto;
 
     .header-box-travel-layer {
@@ -77,9 +120,28 @@ export const DashBoardRootPainelData = styled.div`
       }
 
       .search-box-content {
-        width: 40%;
+        width: 50%;
         height: 70%;
         margin: auto 0;
+        justify-content: space-between;
+        display: flex;
+
+        .add-new-package {
+          width: 8%;
+          height: 100%;
+          border: 1px solid rgb(220, 220, 220);
+          border-radius: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+        }
+
+        .add-new-package:hover {
+          border: none;
+          transition: 0.5s;
+          background-color: rgb(240, 240, 240);
+        }
       }
     }
 
