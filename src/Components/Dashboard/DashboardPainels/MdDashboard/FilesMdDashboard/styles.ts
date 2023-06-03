@@ -3,10 +3,27 @@ import ReactModal from "react-modal";
 
 export const HeaderModal = styled.div`
   width: 100%;
-  height: 5rem;
+  height: 7rem;
   border: 1px solid black;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+
+  .back-page {
+    padding: 1rem;
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+
+    h1 {
+      font-family: 'Roboto';
+      font-size: 1rem;
+      color: rgb(120, 120, 120);
+      margin: 1rem;
+    }
+  }
 
   .modal-flag {
     width: 100%;

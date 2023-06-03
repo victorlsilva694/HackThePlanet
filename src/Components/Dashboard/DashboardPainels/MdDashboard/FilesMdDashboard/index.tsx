@@ -11,6 +11,7 @@ import MoreSearched from "./MoreSearched";
 import ReactModal from "react-modal";
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
+import { BiArrowBack } from "react-icons/bi";
 
 const slideInRight = keyframes`
 from {
@@ -67,12 +68,12 @@ function FilesMdDashboard() {
   const customStyles = {
     content: {
       top: "40%",
-      left: "79%",
+      left: "67%",
       right: "auto",
       bottom: "auto",
       marginRight: "-40%",
       transform: "translate(-40%, -40%)",
-      width: "35%",
+      width: "55%",
       height: "100%",
       backgroundColor: "rgb(245, 245, 245)",
     },
@@ -100,6 +101,10 @@ function FilesMdDashboard() {
         onRequestClose={closeModal}
       >
         <HeaderModal>
+          <div className="back-page">
+            <BiArrowBack style={{ color: 'rgb(150, 150, 150)', width: '20px', height: '20px' }} />
+            <h1>Voltar para o painel</h1>
+          </div>
           <div className="modal-flag"></div>
         </HeaderModal>
       </ReactModal>
