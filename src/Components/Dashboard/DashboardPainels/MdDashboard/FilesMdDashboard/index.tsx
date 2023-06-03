@@ -12,6 +12,7 @@ import ReactModal from "react-modal";
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
+import ModalFormAddTransaction from "./ModalFormAddTransaction";
 
 const slideInRight = keyframes`
 from {
@@ -45,7 +46,7 @@ function FilesMdDashboard() {
     },
     {
       id: 0,
-      name: "Nome da transação",
+      name: "Nome da Transação",
       iconComponent: BsArrowsExpand,
     },
     {
@@ -102,11 +103,21 @@ function FilesMdDashboard() {
       >
         <HeaderModal>
           <div className="back-page">
-            <BiArrowBack style={{ color: 'rgb(150, 150, 150)', width: '20px', height: '20px' }} />
+            <BiArrowBack
+              style={{
+                color: "rgb(150, 150, 150)",
+                width: "20px",
+                height: "20px",
+              }}
+            />
             <h1>Voltar para o painel</h1>
           </div>
-          <div className="modal-flag"></div>
+          <div className="modal-flag">
+            <h1>Adicionar uma nova transação</h1>
+          </div>
         </HeaderModal>
+
+        <ModalFormAddTransaction />
       </ReactModal>
 
       <div className="body-header-data">

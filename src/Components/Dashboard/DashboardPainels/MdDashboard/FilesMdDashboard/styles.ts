@@ -4,7 +4,6 @@ import ReactModal from "react-modal";
 export const HeaderModal = styled.div`
   width: 100%;
   height: 7rem;
-  border: 1px solid black;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -27,6 +26,18 @@ export const HeaderModal = styled.div`
 
   .modal-flag {
     width: 100%;
+    height: 4rem;
+    padding: 1rem;  
+    display: flex;
+    align-items: center;
+
+    h1 {
+      font-family: 'Roboto';
+      font-weight: 600;
+      font-size: 1.7rem;
+      color: rgb(20, 20, 20);
+      margin: 1rem;
+    }
   }
 `;
 
