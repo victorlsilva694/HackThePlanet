@@ -1,5 +1,5 @@
 import { Col, FormCheck, Row } from "react-bootstrap";
-import { FormRootAddTransaction } from "./styles";
+import { FormRootAddTransaction, SetMoneyForJourney } from "./styles";
 import { Form } from "react-bootstrap";
 
 function ModalFormAddTransaction() {
@@ -62,7 +62,6 @@ function ModalFormAddTransaction() {
         bom exemplo para a nomenclatura seria: "Americana, SP", "Califórnia,
         EUA", "Campinas, SP".
       </Form.Text>
-
       <Form style={{ margin: "2.4rem 0" }}>
         <Row className="mb-3">
           {travelsRequirements.map(
@@ -91,6 +90,9 @@ function ModalFormAddTransaction() {
           )}
         </Row>
       </Form>
+      <SetMoneyForJourney>
+        
+      </SetMoneyForJourney>
     </FormRootAddTransaction>
   );
 }

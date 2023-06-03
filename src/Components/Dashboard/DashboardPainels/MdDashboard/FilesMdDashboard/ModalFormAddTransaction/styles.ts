@@ -5,3 +5,10 @@ export const FormRootAddTransaction = styled.div`
     height: auto;
     padding: 1rem;
 `;
+
+export const SetMoneyForJourney = styled.div`
+    width: 100%;
+    padding: 1rem;
+    height: auto;
+    border: 1px solid black;
+`;
