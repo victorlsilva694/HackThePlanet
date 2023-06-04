@@ -8,7 +8,8 @@ export const FormRootAddTransaction = styled.div`
 
 export const SetMoneyForJourney = styled.div`
     width: 100%;
-    padding: 1rem;
-    height: auto;
+    display: flex;
+    flex-direction: column;
     border: 1px solid black;
+    height: auto;
 `;

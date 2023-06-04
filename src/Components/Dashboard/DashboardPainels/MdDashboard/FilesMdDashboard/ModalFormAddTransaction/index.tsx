@@ -1,4 +1,4 @@
-import { Col, FormCheck, Row } from "react-bootstrap";
+import { Button, Col, FloatingLabel, FormCheck, Row } from "react-bootstrap";
 import { FormRootAddTransaction, SetMoneyForJourney } from "./styles";
 import { Form } from "react-bootstrap";
 
@@ -43,6 +43,14 @@ function ModalFormAddTransaction() {
         { optionId: 2, value: "Não Vacinado" },
       ],
     },
+  ];
+
+  const moneyToUse = [
+    "R$ 100,00 - 1.000,00",
+    "R$ 1.000,00 - 10.000,00",
+    "R$ 10.000,00 - 50.000,00",
+    "R$ 50.000,00 - 100.000,00",
+    "Valores maiores",
   ];
 
   return (
@@ -91,7 +99,68 @@ function ModalFormAddTransaction() {
         </Row>
       </Form>
       <SetMoneyForJourney>
-        
+        <FormCheck.Label htmlFor="money-management">
+          Nome da transação
+        </FormCheck.Label>
+        <Form.Select
+          style={{ margin: ".5rem 0", height: "2.7rem" }}
+          id="money-management"
+        >
+          {moneyToUse.map((moneyToUseCallBack: string, key: any) => {
+            return (
+              <option key={key} value={moneyToUseCallBack}>
+                {moneyToUseCallBack}
+              </option>
+            );
+          })}
+        </Form.Select>
+        <Form.Text id="transaction-name" muted>
+          Faça um levantamento de gastos antes de embarcar em uma viagem com
+          gastos como acomodação, transporte, refeições e atrações turísticas.
+          Verifique se há promoções ou descontos disponíveis para economizar
+          dinheiro.
+        </Form.Text>
+      </SetMoneyForJourney>
+      <br />
+      <SetMoneyForJourney>
+        <FormCheck.Label htmlFor="money-management">
+          Anotações importantes sobre a viagem
+        </FormCheck.Label>
+
+        <FloatingLabel
+          controlId="floatingTextarea2"
+          label="Lembre-se de adicionar, lembretes, promoções e estimativas importantes"
+        >
+          <Form.Control
+            as="textarea"
+            placeholder="Leave a comment here"
+            style={{ margin: ".5rem 0", height: "100px" }}
+          />
+        </FloatingLabel>
+      </SetMoneyForJourney>
+      <SetMoneyForJourney>
+        <Form.Check
+          type="checkbox"
+          id="check-validate-token"
+          label="Expirar transação após 1 ano de criação (6 meses é o prazo de expiração padrão)"
+        />
+      </SetMoneyForJourney>
+      <SetMoneyForJourney
+        style={{
+          justifyContent: "flex-end",
+          alignItems: 'flex-end'
+        }}
+      >
+        <Button
+          style={{
+            width: "200px",
+            margin: "2rem 0",
+            height: "3rem",
+          }}
+          variant="primary"
+        >
+          Salvar transação
+        </Button>
       </SetMoneyForJourney>
     </FormRootAddTransaction>
   );
