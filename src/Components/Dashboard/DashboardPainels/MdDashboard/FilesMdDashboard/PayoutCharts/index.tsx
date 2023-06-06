@@ -13,10 +13,10 @@ import {
 function PayoutCharts() {
   const dataa = [
     { name: "Janeiro", amt: '90000' },
-    { name: "Fevereiro", amt: '1' },
-    { name: "Março", amt: 1 },
-    { name: "Abril", amt: 1 },
-    { name: "Maio", amt: 1 },
+    { name: "Fevereiro", amt: '45000' },
+    { name: "Março", amt: '67300' },  
+    { name: "Abril", amt: '70000' },
+    { name: "Maio", amt: '17856' },
   ];
 
   return (

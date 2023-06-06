@@ -102,7 +102,7 @@ function FilesMdDashboard() {
         onRequestClose={closeModal}
       >
         <HeaderModal>
-          <div className="back-page">
+          <div onClick={closeModal} className="back-page">
             <BiArrowBack
               style={{
                 color: "rgb(150, 150, 150)",

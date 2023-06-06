@@ -47,6 +47,9 @@ export const CardStorageData = styled.div`
       width: 70px;
       border-radius: 6px;
       height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .text-storage-data {
