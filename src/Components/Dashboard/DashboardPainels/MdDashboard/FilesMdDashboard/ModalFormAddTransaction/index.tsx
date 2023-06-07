@@ -1,6 +1,8 @@
 import { Button, Col, FloatingLabel, FormCheck, Row } from "react-bootstrap";
 import { FormRootAddTransaction, SetMoneyForJourney } from "./styles";
 import { Form } from "react-bootstrap";
+import { useContext } from "react";
+import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
 
 function ModalFormAddTransaction() {
   interface IOptionsRequirements {
@@ -51,7 +53,13 @@ function ModalFormAddTransaction() {
     "R$ 10.000,00 - 50.000,00",
     "R$ 50.000,00 - 100.000,00",
     "Valores maiores",
-  ];
+  ];  
+  
+  const { user } = useContext(AuthContext);
+
+  function getId() {
+    console.log(user)
+  }
 
   return (
     <FormRootAddTransaction>
@@ -70,6 +78,7 @@ function ModalFormAddTransaction() {
         bom exemplo para a nomenclatura seria: "Americana, SP", "Califórnia,
         EUA", "Campinas, SP".
       </Form.Text>
+      <input type="hidden" name="id" value={user?.id} />
       <Form style={{ margin: "2.4rem 0" }}>
         <Row className="mb-3">
           {travelsRequirements.map(
@@ -100,7 +109,7 @@ function ModalFormAddTransaction() {
       </Form>
       <SetMoneyForJourney>
         <FormCheck.Label htmlFor="money-management">
-          Nome da transação
+          Valores para a viagem
         </FormCheck.Label>
         <Form.Select
           style={{ margin: ".5rem 0", height: "2.7rem" }}
@@ -148,10 +157,11 @@ function ModalFormAddTransaction() {
       <SetMoneyForJourney
         style={{
           justifyContent: "flex-end",
-          alignItems: 'flex-end'
+          alignItems: "flex-end",
         }}
       >
         <Button
+          onClick={getId}
           style={{
             width: "200px",
             margin: "2rem 0",

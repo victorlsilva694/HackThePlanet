@@ -5,8 +5,6 @@ import { AiFolderOpenContainer } from "./styles";
 import React, { useContext, useState } from "react";
 
 function AiFolderOpen() {
-  const userName = localStorage.getItem("userName");
-
   interface IStoreDate {
     currentDate: Date;
   }
