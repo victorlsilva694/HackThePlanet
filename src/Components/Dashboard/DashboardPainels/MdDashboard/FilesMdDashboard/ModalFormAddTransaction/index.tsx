@@ -3,6 +3,7 @@ import { FormRootAddTransaction, SetMoneyForJourney } from "./styles";
 import { Form } from "react-bootstrap";
 import { ChangeEvent, useContext, useState } from "react";
 import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
+import { v4 as uuidv4 } from 'uuid';
 
 function ModalFormAddTransaction() {
   interface IOptionsRequirements {
@@ -70,11 +71,11 @@ function ModalFormAddTransaction() {
   const [newTransactionObjectData, setNewTransactionObjectData] =
     useState<ITransactionObjectData>({
       transactionName: "",
-      passport: "",
-      userId: 0,
-      travelCode: "",
-      covidData: "",
-      priceValues: "",
+      passport: travelsRequirements[0].optionsPassport[0].value,
+      userId: parseInt((user?.id ?? "").toString(), 10),
+      travelCode: uuidv4().split("-")[0],
+      covidData: travelsRequirements[1].optionsPassport[0].value,
+      priceValues: moneyToUse[0],
       warningAnnotation: "",
     });
 
@@ -90,6 +91,10 @@ function ModalFormAddTransaction() {
       ...defaultData,
       [fieldName]: value || "",
     }));
+  }
+
+  function sendTransactionForm() {
+    console.log(newTransactionObjectData)
   }
 
   return (
@@ -136,13 +141,14 @@ function ModalFormAddTransaction() {
                     value={
                       newTransactionObjectData[
                         travelsRequirementsCallBack.label as keyof ITransactionObjectData
-                      ]
+                      ] || travelsRequirementsCallBack.optionsPassport[0].value
                     }
                   >
                     {travelsRequirementsCallBack.optionsPassport.map(
                       (optionsRequirementsCallBack: IOptionsRequirements) => {
                         return (
                           <option
+                            selected
                             key={optionsRequirementsCallBack.optionId}
                             value={optionsRequirementsCallBack.value}
                           >
@@ -165,10 +171,12 @@ function ModalFormAddTransaction() {
         <Form.Select
           style={{ margin: ".5rem 0", height: "2.7rem" }}
           id="money-management"
+          value={newTransactionObjectData?.priceValues || ""}
+          onChange={(event) => handleInputChange(event, "priceValues")}
         >
           {moneyToUse.map((moneyToUseCallBack: string, key: any) => {
             return (
-              <option key={key} value={moneyToUseCallBack}>
+              <option selected key={key} value={moneyToUseCallBack}>
                 {moneyToUseCallBack}
               </option>
             );
@@ -194,6 +202,8 @@ function ModalFormAddTransaction() {
           <Form.Control
             as="textarea"
             placeholder="Leave a comment here"
+            value={newTransactionObjectData?.warningAnnotation || ""}
+            onChange={(event: any) => handleInputChange(event, "warningAnnotation")}
             style={{ margin: ".5rem 0", height: "100px" }}
           />
         </FloatingLabel>
@@ -212,6 +222,7 @@ function ModalFormAddTransaction() {
         }}
       >
         <Button
+          onClick={sendTransactionForm}
           style={{
             width: "200px",
             margin: "2rem 0",
