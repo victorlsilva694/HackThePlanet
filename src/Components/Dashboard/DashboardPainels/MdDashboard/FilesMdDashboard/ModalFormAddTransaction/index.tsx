@@ -1,7 +1,7 @@
 import { Button, Col, FloatingLabel, FormCheck, Row } from "react-bootstrap";
 import { FormRootAddTransaction, SetMoneyForJourney } from "./styles";
 import { Form } from "react-bootstrap";
-import { useContext } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
 
 function ModalFormAddTransaction() {
@@ -53,12 +53,43 @@ function ModalFormAddTransaction() {
     "R$ 10.000,00 - 50.000,00",
     "R$ 50.000,00 - 100.000,00",
     "Valores maiores",
-  ];  
-  
+  ];
+
   const { user } = useContext(AuthContext);
 
-  function getId() {
-    console.log(user)
+  interface ITransactionObjectData {
+    transactionName: string;
+    passport: string;
+    userId: number;
+    travelCode: string;
+    covidData: string;
+    priceValues: string;
+    warningAnnotation: string;
+  }
+
+  const [newTransactionObjectData, setNewTransactionObjectData] =
+    useState<ITransactionObjectData>({
+      transactionName: "",
+      passport: "",
+      userId: 0,
+      travelCode: "",
+      covidData: "",
+      priceValues: "",
+      warningAnnotation: "",
+    });
+
+  function handleInputChange(
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>,
+    fieldName: keyof ITransactionObjectData
+  ) {
+    const value = event.target.value;
+
+    setNewTransactionObjectData((defaultData) => ({
+      ...defaultData,
+      [fieldName]: value || "",
+    }));
   }
 
   return (
@@ -67,6 +98,10 @@ function ModalFormAddTransaction() {
         Nome da transação
       </FormCheck.Label>
       <Form.Control
+        value={newTransactionObjectData?.transactionName || ""}
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          handleInputChange(event, "transactionName")
+        }
         style={{ margin: ".5rem 0", height: "2.7rem" }}
         type="text"
         id="transaction-name"
@@ -78,7 +113,6 @@ function ModalFormAddTransaction() {
         bom exemplo para a nomenclatura seria: "Americana, SP", "Califórnia,
         EUA", "Campinas, SP".
       </Form.Text>
-      <input type="hidden" name="id" value={user?.id} />
       <Form style={{ margin: "2.4rem 0" }}>
         <Row className="mb-3">
           {travelsRequirements.map(
@@ -91,15 +125,32 @@ function ModalFormAddTransaction() {
                   className="position-relative"
                 >
                   <Form.Label>{travelsRequirementsCallBack.label}</Form.Label>
-                  <Form.Select style={{ height: "2.7rem" }}>
+                  <Form.Select
+                    style={{ height: "2.7rem" }}
+                    onChange={(event) =>
+                      handleInputChange(
+                        event,
+                        travelsRequirementsCallBack.label as keyof ITransactionObjectData
+                      )
+                    }
+                    value={
+                      newTransactionObjectData[
+                        travelsRequirementsCallBack.label as keyof ITransactionObjectData
+                      ]
+                    }
+                  >
                     {travelsRequirementsCallBack.optionsPassport.map(
                       (optionsRequirementsCallBack: IOptionsRequirements) => {
                         return (
-                          <option>{optionsRequirementsCallBack.value}</option>
+                          <option
+                            key={optionsRequirementsCallBack.optionId}
+                            value={optionsRequirementsCallBack.value}
+                          >
+                            {optionsRequirementsCallBack.value}
+                          </option>
                         );
                       }
                     )}
-                    <option value="1">One</option>
                   </Form.Select>
                 </Form.Group>
               );
@@ -161,7 +212,6 @@ function ModalFormAddTransaction() {
         }}
       >
         <Button
-          onClick={getId}
           style={{
             width: "200px",
             margin: "2rem 0",
