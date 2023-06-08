@@ -18,6 +18,13 @@ export const dashboardApiRequests = () => ({
     });
     return response.data;
   },
+
+  getAllTransactionsByUserId: async (userId: number) => {
+    const response = await api.post(
+      `http://127.0.0.1:8000/api/dashboard/getAll/transactions/${userId}`
+    );
+    return response.data;
+  },
 });
 
 export const useApi = () => ({

@@ -9,7 +9,7 @@ import { IconType } from "react-icons";
 import PayoutCharts from "./PayoutCharts";
 import MoreSearched from "./MoreSearched";
 import ReactModal from "react-modal";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
 import ModalFormAddTransaction from "./ModalFormAddTransaction";
@@ -93,6 +93,22 @@ function FilesMdDashboard() {
   function closeModal() {
     setIsOpen(false);
   }
+
+  useEffect(() => {
+    // Função a ser chamada assim que o componente for aberto
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/dashboard/getAll/transactions/{id}");
+        const data = await response.json();
+        
+      } catch (error) {
+      }
+    };
+
+    fetchData(); 
+    // return () => {
+    // };
+  }, []);
 
   return (
     <DashBoardRootPainelData>
