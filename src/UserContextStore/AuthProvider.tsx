@@ -6,6 +6,7 @@ import { useApi } from "../hooks/useApi";
 interface childrenType {
   children: React.ReactNode;
 }
+
 export const AuthProvider: React.FC<childrenType> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [nameDashboard, setNameDashboard] = useState<string>("");

@@ -3,7 +3,8 @@ import { FormRootAddTransaction, SetMoneyForJourney } from "./styles";
 import { Form } from "react-bootstrap";
 import { ChangeEvent, useContext, useState } from "react";
 import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
+import { DashboardContext } from "../../../../../../DashboardContextStore/DashboardContext";
 
 function ModalFormAddTransaction() {
   interface IOptionsRequirements {
@@ -93,8 +94,10 @@ function ModalFormAddTransaction() {
     }));
   }
 
-  function sendTransactionForm() {
-    console.log(newTransactionObjectData)
+  const newTransaction = useContext(DashboardContext);
+
+  async function sendTransactionForm() {
+    await newTransaction.setTransaction(newTransactionObjectData);
   }
 
   return (
@@ -203,7 +206,9 @@ function ModalFormAddTransaction() {
             as="textarea"
             placeholder="Leave a comment here"
             value={newTransactionObjectData?.warningAnnotation || ""}
-            onChange={(event: any) => handleInputChange(event, "warningAnnotation")}
+            onChange={(event: any) =>
+              handleInputChange(event, "warningAnnotation")
+            }
             style={{ margin: ".5rem 0", height: "100px" }}
           />
         </FloatingLabel>

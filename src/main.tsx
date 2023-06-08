@@ -17,6 +17,7 @@ import Register from "./Pages/Register";
 import { AxiosProvider } from "./Providers/AxiosProvider";
 import Dashboard from "./Pages/Dashboard";
 import { AuthProvider } from "./UserContextStore/AuthProvider";
+import { DashboardProvider } from "./DashboardContextStore/DashboardProvider";
 
 // Defina suas rotas públicas e privadas
 const PublicRoutes = () => {
@@ -87,17 +88,21 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.render(
   <AxiosProvider>
     <React.StrictMode>
-      <AuthProvider>
-        <GlobalStyle />
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path="/*"
-              element={isAuthenticated() ? <PrivateRoutes /> : <PublicRoutes />}
-            />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
+      <DashboardProvider>
+        <AuthProvider>
+          <GlobalStyle />
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/*"
+                element={
+                  isAuthenticated() ? <PrivateRoutes /> : <PublicRoutes />
+                }
+              />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </DashboardProvider>
       ,
     </React.StrictMode>
   </AxiosProvider>,
