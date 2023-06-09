@@ -20,7 +20,7 @@ export const dashboardApiRequests = () => ({
   },
 
   getAllTransactionsByUserId: async (userId: number) => {
-    const response = await api.post(
+    const response = await api.get(
       `http://127.0.0.1:8000/api/dashboard/getAll/transactions/${userId}`
     );
     return response.data;

@@ -15,6 +15,7 @@ export const DashboardProvider: React.FC<childrenType> = ({ children }) => {
     const trasactionResponse = await requestDashboard.insertTransaction(
       newTransaction
     );
+    console.log(trasactionResponse)
     return trasactionResponse;
   };
 

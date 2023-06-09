@@ -5,6 +5,7 @@ import { ChangeEvent, useContext, useState } from "react";
 import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
 import { v4 as uuidv4 } from "uuid";
 import { DashboardContext } from "../../../../../../DashboardContextStore/DashboardContext";
+import { useNavigate } from "react-router-dom";
 
 function ModalFormAddTransaction() {
   interface IOptionsRequirements {
@@ -56,7 +57,7 @@ function ModalFormAddTransaction() {
     "R$ 50.000,00 - 100.000,00",
     "Valores maiores",
   ];
-
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
   interface ITransactionObjectData {
@@ -98,6 +99,7 @@ function ModalFormAddTransaction() {
 
   async function sendTransactionForm() {
     await newTransaction.setTransaction(newTransactionObjectData);
+    navigate("/dashboard");
   }
 
   return (

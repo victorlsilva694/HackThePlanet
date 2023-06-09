@@ -9,10 +9,13 @@ import { IconType } from "react-icons";
 import PayoutCharts from "./PayoutCharts";
 import MoreSearched from "./MoreSearched";
 import ReactModal from "react-modal";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
 import ModalFormAddTransaction from "./ModalFormAddTransaction";
+import { dashboardApiRequests } from "../../../../../hooks/useApi";
+import { AuthContext } from "../../../../../UserContextStore/AuthContext";
+import { format, addMonths, parse, parseISO } from "date-fns";
 
 const slideInRight = keyframes`
 from {
@@ -30,6 +33,19 @@ function FilesMdDashboard() {
     id: number;
     name: string;
     iconComponent: IconType;
+  }
+
+  interface Transaction {
+    covid_data: string;
+    created_at: string;
+    id: number;
+    passport: string;
+    price_values: string;
+    transaction_name: string;
+    travel_code: string;
+    updated_at: string;
+    user_id: number;
+    warning_annotation: string;
   }
 
   interface ILastTransactions {
@@ -66,6 +82,10 @@ function FilesMdDashboard() {
     },
   ];
 
+  const [isOpen, setIsOpen] = useState(false);
+  const requestDashboard = dashboardApiRequests();
+  const { user } = useContext(AuthContext);
+
   const customStyles = {
     content: {
       top: "40%",
@@ -84,7 +104,6 @@ function FilesMdDashboard() {
   };
 
   ReactModal.setAppElement("#root");
-  const [isOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -93,21 +112,30 @@ function FilesMdDashboard() {
   function closeModal() {
     setIsOpen(false);
   }
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
-    // Função a ser chamada assim que o componente for aberto
     const fetchData = async () => {
-      try {
-        const response = await fetch("/api/dashboard/getAll/transactions/{id}");
-        const data = await response.json();
-        
-      } catch (error) {
-      }
-    };
+      const trasactionResponse =
+        await requestDashboard.getAllTransactionsByUserId(
+          parseInt((user?.id ?? "").toString(), 10)
+        );
+      const modifiedTransactions = trasactionResponse.map(
+        (transaction: any) => {
+          const originalDate = parseISO(transaction.created_at);
+          const modifiedDate = addMonths(originalDate, 6);
+          const formattedDate = format(modifiedDate, "dd/MM/yyyy");
 
-    fetchData(); 
-    // return () => {
-    // };
+          return {
+            ...transaction,
+            created_at: formattedDate,
+          };
+        }
+      );
+
+      setTransactions(modifiedTransactions);
+    };
+    fetchData();
   }, []);
 
   return (
@@ -218,37 +246,41 @@ function FilesMdDashboard() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>A1WQS23 </td>
-              <td>Pacote A1WQS23</td>
-              <td>15/01/2023</td>
-              <td>
-                <Button
-                  variant="warning"
-                  style={{
-                    width: "60%",
-                    backgroundColor: "#17A2B8",
-                    border: "none",
-                    color: "rgb(240, 240, 240)",
-                    borderRadius: "3px",
-                  }}
-                >
-                  Editar
-                </Button>
-              </td>
-              <td>
-                <Button
-                  variant="danger"
-                  style={{
-                    width: "60%",
-                    color: "rgb(240, 240, 240)",
-                    borderRadius: "3px",
-                  }}
-                >
-                  Excluir
-                </Button>
-              </td>
-            </tr>
+            {transactions?.map((transactionData: Transaction) => {
+              return (
+                <tr>
+                  <td>{transactionData.travel_code}</td>
+                  <td>{transactionData.transaction_name}</td>
+                  <td>{transactionData.created_at}</td>
+                  <td>
+                    <Button
+                      variant="warning"
+                      style={{
+                        width: "60%",
+                        backgroundColor: "#17A2B8",
+                        border: "none",
+                        color: "rgb(240, 240, 240)",
+                        borderRadius: "3px",
+                      }}
+                    >
+                      Editar
+                    </Button>
+                  </td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      style={{
+                        width: "60%",
+                        color: "rgb(240, 240, 240)",
+                        borderRadius: "3px",
+                      }}
+                    >
+                      Excluir
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

@@ -29,6 +29,8 @@ export const UploadStorageContainer = styled.div`
 
     h1 {
       font-size: 1rem;
+      text-align: center;
+      width: 85%;
       margin: 1.5rem auto;
       font-family: "Roboto";
     }
