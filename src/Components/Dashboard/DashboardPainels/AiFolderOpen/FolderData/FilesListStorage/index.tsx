@@ -3,6 +3,7 @@ import { RxRowSpacing } from "react-icons/rx";
 import React, { useState, useEffect, useContext } from "react";
 import { dashboardApiRequests } from "../../../../../../hooks/useApi";
 import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
+import { Button } from "react-bootstrap";
 
 function FilesListStorage() {
   interface INameRelationIcon {
@@ -15,20 +16,28 @@ function FilesListStorage() {
     iconSize: JSX.Element;
   }
 
+  interface IFileOwner {
+    owner: string;
+    iconSize: JSX.Element;
+  }
+
   interface ILastModifiedRelationIcon {
     lastModified: string;
     iconSize: JSX.Element;
   }
 
   interface IListFilesDataSizeSavedInStorage {
+    fileOwner: IFileOwner[];
     nameRelationIcon: INameRelationIcon[];
     sizeRelationIcon: ISizeRelationIcon[];
     lastModifiedRelation: ILastModifiedRelationIcon[];
     id: number;
   }
 
-  interface IAllFilesData {
-    file_path: string | null;
+  interface IFilesDataLenght {
+    file_name: string;
+    file_size_mb: number;
+    user_name: string;
   }
 
   const listFilesDataSizeSavedInStorage: IListFilesDataSizeSavedInStorage[] = [
@@ -36,7 +45,7 @@ function FilesListStorage() {
       id: 1,
       nameRelationIcon: [
         {
-          name: "Nome",
+          name: "Nome do arquivo",
           iconName: <RxRowSpacing />,
         },
       ],
@@ -46,9 +55,15 @@ function FilesListStorage() {
           iconSize: <RxRowSpacing />,
         },
       ],
+      fileOwner: [
+        {
+          owner: "Dono dos arquivos",
+          iconSize: <RxRowSpacing />,
+        },
+      ],
       lastModifiedRelation: [
         {
-          lastModified: "Realizar download",
+          lastModified: "Realizar download do arquivo",
           iconSize: <RxRowSpacing />,
         },
       ],
@@ -57,6 +72,7 @@ function FilesListStorage() {
 
   const requestDashboard = dashboardApiRequests();
   const { user } = useContext(AuthContext);
+  const [files, setFiles] = useState<IFilesDataLenght[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,22 +80,7 @@ function FilesListStorage() {
         parseInt((user?.id ?? "").toString(), 10)
       );
 
-      allFilesResponse.file_payload.map((allFilesRender: ))
-
-      // const modifiedTransactions = trasactionResponse.map(
-      //   (transaction: any) => {
-      //     const originalDate = parseISO(transaction.created_at);
-      //     const modifiedDate = addMonths(originalDate, 6);
-      //     const formattedDate = format(modifiedDate, "dd/MM/yyyy");
-
-      //     return {
-      //       ...transaction,
-      //       created_at: formattedDate,
-      //     };
-      //   }
-      // );
-
-      // setTransactions(modifiedTransactions);
+      setFiles(allFilesResponse.file_payload);
     };
     fetchData();
   }, []);
@@ -121,6 +122,18 @@ function FilesListStorage() {
                   )}
                 </div>
                 <div className="name-layer-table">
+                  {layersTableCallBack.fileOwner.map(
+                    (sizeRelationIconCallBack: IFileOwner) => {
+                      return (
+                        <div className="icon-name-file-table">
+                          <h1>{sizeRelationIconCallBack.owner}</h1>
+                          {sizeRelationIconCallBack.iconSize}
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+                <div className="name-layer-table">
                   {layersTableCallBack.lastModifiedRelation.map(
                     (lastModifiedRelationIcon: ILastModifiedRelationIcon) => {
                       return (
@@ -136,6 +149,37 @@ function FilesListStorage() {
             );
           }
         )}
+        <div className="table-body-files-layer">
+          {files?.map((filesPayloadRender: IFilesDataLenght) => {
+            return (
+              <div className="body-table-layer">
+                <div className="checkbox-layer-table">
+                  <input type="checkbox" id="checkbox-item" />
+                </div>
+                <div className="name-layer-table">
+                  <div className="icon-name-file-table">
+                    <h1>{filesPayloadRender.file_name}</h1>
+                  </div>
+                </div>
+                <div className="name-layer-table">
+                  <div className="icon-name-file-table">
+                    <h1>{filesPayloadRender.file_size_mb}mb</h1>
+                  </div>
+                </div>
+                <div className="name-layer-table">
+                  <div className="icon-name-file-table">
+                    <h1>{filesPayloadRender.user_name}</h1>
+                  </div>
+                </div>
+                <div className="name-layer-table">
+                  <div className="icon-name-file-table">
+                    <Button style={{ width: '60%', height: '2.7rem', margin: 'auto' }} variant="danger">Danger</Button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </FilesListDataStorageStyles>
   );
