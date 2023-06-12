@@ -72,7 +72,6 @@ function FolderData() {
   function openModalForAddNewDocument(buttonNameForCompare: string) {
     const buttonNameIsMatch: boolean =
       buttonNameForCompare === "Adicionar documento";
-
     if (buttonNameIsMatch) {
       setOpenModal(true);
     }

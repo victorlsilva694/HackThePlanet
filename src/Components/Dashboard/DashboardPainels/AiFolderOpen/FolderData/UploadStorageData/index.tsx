@@ -3,8 +3,10 @@ import { UploadStorageContainer } from "./styles";
 import { IoIosDocument } from "react-icons/io";
 import platform from "platform";
 import { useDropzone } from "react-dropzone";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function UploadStorageData() {
   interface FileData {
@@ -12,8 +14,9 @@ function UploadStorageData() {
     content: string | ArrayBuffer | null;
   }
 
+  const { user } = useContext(AuthContext);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  
+
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
@@ -22,6 +25,8 @@ function UploadStorageData() {
     },
   });
 
+  const navigate = useNavigate();
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setSelectedFile(event.target.files[0]);
@@ -29,16 +34,26 @@ function UploadStorageData() {
   };
 
   const submitFile = async (event: React.FormEvent) => {
+
     if (selectedFile) {
       console.log(selectedFile);
       try {
         const formData = new FormData();
         formData.append("file", selectedFile);
-        await axios.post("http://127.0.0.1/", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        formData.append("id",  String(user?.id ?? 0));
+        formData.append("name",  user?.name ?? "");
+        
+        const response = await axios.post(
+          "http://localhost:8000/api/dashboard/upload/files_private",
+          formData,
+          {
+            headers: {
+              "Content-Type": String(selectedFile.type),
+            },
+          }
+        );
+        console.log(response);
+        navigate("/dashboard");
       } catch (error) {
         console.log(error);
       }
@@ -59,7 +74,7 @@ function UploadStorageData() {
         diretrizes fornecidas e aguarde a confirmação de recebimento.
       </Form.Text>
 
-      <form onSubmit={submitFile} >
+      <form onSubmit={submitFile}>
         <div {...getRootProps()} className="upload-document">
           <div className="radius-upload-button">
             <IoIosDocument
@@ -72,7 +87,7 @@ function UploadStorageData() {
           </div>
 
           <h1>
-          <input {...getInputProps({ onChange: handleFileChange })} />
+            <input {...getInputProps({ onChange: handleFileChange })} />
             <span style={{ color: "blue", cursor: "pointer" }}>
               Clique aqui para escolher os arquivos
             </span>{" "}

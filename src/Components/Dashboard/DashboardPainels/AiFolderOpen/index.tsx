@@ -17,6 +17,7 @@ function AiFolderOpen() {
     "pt-BR",
     { timeZone: "UTC" }
   );
+  
   return (
     <AiFolderOpenContainer>
       <HeaderDashboardContainer>

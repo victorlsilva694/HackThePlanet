@@ -4,6 +4,10 @@ import { BsSearch } from "react-icons/bs";
 import { useState } from "react";
 import InProgressTravels from "./InProgressTravels";
 import CardUser from "./CardUser";
+import { MdAdd } from "react-icons/md";
+import ReactModal from "react-modal";
+import { HeaderModal } from "../../MdDashboard/FilesMdDashboard/styles";
+import { BiArrowBack } from "react-icons/bi";
 
 function SelectedAllTravels() {
   interface IMyTravelsButtonsData {
@@ -30,12 +34,63 @@ function SelectedAllTravels() {
     myTravelsButtonsData[0].buttonName
   );
 
+  const [openModalNewTravelsModal, setOpenModalNewTravelsModal] =
+    useState(false);
+
+  const customStyles = {
+    content: {
+      top: "40%",
+      left: "77%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-40%",
+      transform: "translate(-40%, -40%)",
+      width: "40%",
+      height: "100%",
+      backgroundColor: "rgb(245, 245, 245)",
+    },
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.5)", // Define o fundo preto do overlay
+    },
+  };
+
   function handleClick(buttonNameAddClass: string) {
     setButtonSelected(buttonNameAddClass);
   }
 
+  function openModalForInsertNewTravel() {
+    setOpenModalNewTravelsModal(true);
+  }
+
+  function closeModalForAddNewDocument() {
+    setOpenModalNewTravelsModal(false);
+  }
+
   return (
     <SelectedAllTravelsBoxWrapper>
+      <ReactModal
+        isOpen={openModalNewTravelsModal}
+        style={customStyles}
+        onRequestClose={closeModalForAddNewDocument}
+      >
+        <HeaderModal>
+          <div onClick={closeModalForAddNewDocument} className="back-page">
+            <BiArrowBack
+              style={{
+                color: "rgb(150, 150, 150)",
+                width: "20px",
+                height: "20px",
+              }}
+            />
+            <h1>Voltar para o painel</h1>
+          </div>
+          <div className="modal-flag">
+            <h1>Adicionar novos documentos</h1>
+          </div>
+        </HeaderModal>
+        {/* <UploadStorageData /> */}
+      </ReactModal>
+
       <div className="body-items-travels-referece">
         <div className="my-travles">
           <div className="header-travels-wrapper">
@@ -62,7 +117,20 @@ function SelectedAllTravels() {
                 );
               }
             )}
+            <div
+              onClick={openModalForInsertNewTravel}
+              className="add-new-travel-button"
+            >
+              <MdAdd
+                style={{
+                  width: "20px",
+                  color: "rgb(120, 120, 120)",
+                  height: "20px",
+                }}
+              />
+            </div>
           </div>
+
           <InProgressTravels />
         </div>
       </div>
