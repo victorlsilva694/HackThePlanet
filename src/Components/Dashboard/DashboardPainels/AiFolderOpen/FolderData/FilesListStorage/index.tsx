@@ -1,5 +1,8 @@
 import { FilesListDataStorageStyles } from "./styles";
 import { RxRowSpacing } from "react-icons/rx";
+import React, { useState, useEffect, useContext } from "react";
+import { dashboardApiRequests } from "../../../../../../hooks/useApi";
+import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
 
 function FilesListStorage() {
   interface INameRelationIcon {
@@ -21,13 +24,15 @@ function FilesListStorage() {
     nameRelationIcon: INameRelationIcon[];
     sizeRelationIcon: ISizeRelationIcon[];
     lastModifiedRelation: ILastModifiedRelationIcon[];
-    shared: string;
     id: number;
+  }
+
+  interface IAllFilesData {
+    file_path: string | null;
   }
 
   const listFilesDataSizeSavedInStorage: IListFilesDataSizeSavedInStorage[] = [
     {
-      shared: "Itens Compartilhados",
       id: 1,
       nameRelationIcon: [
         {
@@ -43,12 +48,41 @@ function FilesListStorage() {
       ],
       lastModifiedRelation: [
         {
-          lastModified: "Última Modificação",
+          lastModified: "Realizar download",
           iconSize: <RxRowSpacing />,
         },
       ],
     },
   ];
+
+  const requestDashboard = dashboardApiRequests();
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const allFilesResponse = await requestDashboard.getAllFilesByUserId(
+        parseInt((user?.id ?? "").toString(), 10)
+      );
+
+      allFilesResponse.file_payload.map((allFilesRender: ))
+
+      // const modifiedTransactions = trasactionResponse.map(
+      //   (transaction: any) => {
+      //     const originalDate = parseISO(transaction.created_at);
+      //     const modifiedDate = addMonths(originalDate, 6);
+      //     const formattedDate = format(modifiedDate, "dd/MM/yyyy");
+
+      //     return {
+      //       ...transaction,
+      //       created_at: formattedDate,
+      //     };
+      //   }
+      // );
+
+      // setTransactions(modifiedTransactions);
+    };
+    fetchData();
+  }, []);
 
   return (
     <FilesListDataStorageStyles>
@@ -85,11 +119,6 @@ function FilesListStorage() {
                       );
                     }
                   )}
-                </div>
-                <div className="name-layer-table">
-                  <div className="icon-name-file-table">
-                    <h1>{layersTableCallBack.shared}</h1>
-                  </div>
                 </div>
                 <div className="name-layer-table">
                   {layersTableCallBack.lastModifiedRelation.map(
