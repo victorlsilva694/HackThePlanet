@@ -28,7 +28,7 @@ function InProgressTravels() {
     },
     {
       id: 2,
-      name: "Destino da viagem",
+      name: "Destino ou nome da viagem",
       lengthTableData: "col-xs-6",
     },
     {

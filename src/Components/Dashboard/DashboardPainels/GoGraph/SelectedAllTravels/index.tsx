@@ -1,13 +1,16 @@
 import { Form, InputGroup } from "react-bootstrap";
 import { SelectedAllTravelsBoxWrapper } from "./styles";
 import { BsSearch } from "react-icons/bs";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import InProgressTravels from "./InProgressTravels";
 import CardUser from "./CardUser";
 import { MdAdd } from "react-icons/md";
 import ReactModal from "react-modal";
 import { HeaderModal } from "../../MdDashboard/FilesMdDashboard/styles";
 import { BiArrowBack } from "react-icons/bi";
+import { dashboardApiRequests } from "../../../../../hooks/useApi";
+import { AuthContext } from "../../../../../UserContextStore/AuthContext";
+import { format, addMonths, parse, parseISO } from "date-fns";
 
 function SelectedAllTravels() {
   interface IMyTravelsButtonsData {
@@ -22,13 +25,57 @@ function SelectedAllTravels() {
     },
     {
       id: 2,
-      buttonName: "Viagens em Planejamento",
+      buttonName: "Viagens concluídas",
     },
     {
       id: 3,
-      buttonName: "Viagens Profissionais",
+      buttonName: "Viagens Futuras",
     },
   ];
+
+  const requestDashboard = dashboardApiRequests();
+  const { user } = useContext(AuthContext);
+
+  interface Transaction {
+    covid_data: string;
+    created_at: string;
+    id: number;
+    passport: string;
+    price_values: string;
+    transaction_name: string;
+    travel_code: string;
+    updated_at: string;
+    user_id: number;
+    warning_annotation: string;
+  }
+
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const trasactionResponse =
+        await requestDashboard.getAllTransactionsByUserId(
+          parseInt((user?.id ?? "").toString(), 10)
+        );
+      const modifiedTransactions = trasactionResponse.map(
+        (transaction: any) => {
+          const originalDate = parseISO(transaction.created_at);
+          const modifiedDate = addMonths(originalDate, 6);
+          const formattedDate = format(modifiedDate, "dd/MM/yyyy");
+
+          return {
+            ...transaction,
+            created_at: formattedDate,
+          };
+        }
+      );
+
+      setTransactions(modifiedTransactions);
+
+      console.log(transactions)
+    };
+    fetchData();
+  }, []);
 
   const [buttonSelected, setButtonSelected] = useState<string>(
     myTravelsButtonsData[0].buttonName
@@ -50,7 +97,7 @@ function SelectedAllTravels() {
       backgroundColor: "rgb(245, 245, 245)",
     },
     overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.5)", // Define o fundo preto do overlay
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
   };
 
@@ -88,7 +135,6 @@ function SelectedAllTravels() {
             <h1>Adicionar novos documentos</h1>
           </div>
         </HeaderModal>
-        {/* <UploadStorageData /> */}
       </ReactModal>
 
       <div className="body-items-travels-referece">

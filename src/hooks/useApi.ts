@@ -29,9 +29,9 @@ export const dashboardApiRequests = () => ({
   getAllFilesByUserId: async (userId: number) => {
     const response = await api.get(
       `http://127.0.0.1:8000/api/dashboard/getAll/files/${userId}`
-    )
+    );
     return response.data;
-  }
+  },
 });
 
 export const useApi = () => ({
