@@ -67,7 +67,11 @@ function OverviewStorage() {
     },
   ];
 
-  const [files, setFiles] = useState<IFilesDataLenght[] | null>(null);
+  const [picturesFileLength, setPicturesFileLenght] = useState<number | null>(null);
+  const [videoFileLength, setVideoFileLength] = useState<number | null>(null);
+  const [documentsFileLength, setDocumentsFileLength] = useState<number | null>(null);
+  const [othersFileLength, setOthersFileLength] = useState<number | null>(null);
+  
   const requestDashboard = dashboardApiRequests();
   const { user } = useContext(AuthContext);
 
@@ -77,11 +81,42 @@ function OverviewStorage() {
         parseInt((user?.id ?? "").toString(), 10)
       );
 
-      console.log(allFilesResponse.file_payload);
+      const files: IFilesDataLenght[] = allFilesResponse.file_payload;
+
+      const imageFiles = files.filter((file) => file.file_name.endsWith(".jpg") || file.file_name.endsWith(".png"));
+      const imageFilesSize = imageFiles.reduce((total, file) => total + file.file_size_mb, 0);
+      setPicturesFileLenght(imageFilesSize);
+
+      const videoFiles = files.filter((file) => file.file_name.endsWith(".mp4") || file.file_name.endsWith(".mov"));
+      const videoFilesSize = videoFiles.reduce((total, file) => total + file.file_size_mb, 0);
+      setVideoFileLength(videoFilesSize);
+
+      const documentFiles = files.filter((file) => file.file_name.endsWith(".pdf") || file.file_name.endsWith(".docx"));
+      const documentFilesSize = documentFiles.reduce((total, file) => total + file.file_size_mb, 0);
+      setDocumentsFileLength(documentFilesSize);
+
+      // Filtrar e calcular o tamanho dos outros arquivos
+      const otherFiles = files.filter(
+        (file) =>
+          !file.file_name.endsWith(".jpg") &&
+          !file.file_name.endsWith(".png") &&
+          !file.file_name.endsWith(".mp4") &&
+          !file.file_name.endsWith(".mov") &&
+          !file.file_name.endsWith(".pdf") &&
+          !file.file_name.endsWith(".docx")
+      );
+      const otherFilesSize = otherFiles.reduce((total, file) => total + file.file_size_mb, 0);
+      setOthersFileLength(otherFilesSize);
+
+
+      console.log("picturesFileLength", picturesFileLength)
+      console.log("videoFileLength", videoFileLength)
+      console.log("documentsFileLength", documentsFileLength)
+      console.log("othersFileLength", othersFileLength)
     };
+
     fetchData();
   }, []);
-
   return (
     <OverviewStorageDataWrapper>
       {overviewStorageDataType.map(
