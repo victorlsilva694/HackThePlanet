@@ -10,7 +10,6 @@ import { HeaderModal } from "../../MdDashboard/FilesMdDashboard/styles";
 import { BiArrowBack } from "react-icons/bi";
 import { dashboardApiRequests } from "../../../../../hooks/useApi";
 import { AuthContext } from "../../../../../UserContextStore/AuthContext";
-import { format, addMonths, parse, parseISO } from "date-fns";
 
 function SelectedAllTravels() {
   interface IMyTravelsButtonsData {
@@ -32,50 +31,6 @@ function SelectedAllTravels() {
       buttonName: "Viagens Futuras",
     },
   ];
-
-  const requestDashboard = dashboardApiRequests();
-  const { user } = useContext(AuthContext);
-
-  interface Transaction {
-    covid_data: string;
-    created_at: string;
-    id: number;
-    passport: string;
-    price_values: string;
-    transaction_name: string;
-    travel_code: string;
-    updated_at: string;
-    user_id: number;
-    warning_annotation: string;
-  }
-
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const trasactionResponse =
-        await requestDashboard.getAllTransactionsByUserId(
-          parseInt((user?.id ?? "").toString(), 10)
-        );
-      const modifiedTransactions = trasactionResponse.map(
-        (transaction: any) => {
-          const originalDate = parseISO(transaction.created_at);
-          const modifiedDate = addMonths(originalDate, 6);
-          const formattedDate = format(modifiedDate, "dd/MM/yyyy");
-
-          return {
-            ...transaction,
-            created_at: formattedDate,
-          };
-        }
-      );
-
-      setTransactions(modifiedTransactions);
-
-      console.log(transactions)
-    };
-    fetchData();
-  }, []);
 
   const [buttonSelected, setButtonSelected] = useState<string>(
     myTravelsButtonsData[0].buttonName
@@ -141,9 +96,13 @@ function SelectedAllTravels() {
         <div className="my-travles">
           <div className="header-travels-wrapper">
             {myTravelsButtonsData.map(
-              (myTravelsButtonsDataCallBack: IMyTravelsButtonsData) => {
+              (
+                myTravelsButtonsDataCallBack: IMyTravelsButtonsData,
+                key: any
+              ) => {
                 return (
                   <div
+                    key={key}
                     onClick={() =>
                       handleClick(myTravelsButtonsDataCallBack.buttonName)
                     }
@@ -163,21 +122,8 @@ function SelectedAllTravels() {
                 );
               }
             )}
-            <div
-              onClick={openModalForInsertNewTravel}
-              className="add-new-travel-button"
-            >
-              <MdAdd
-                style={{
-                  width: "20px",
-                  color: "rgb(120, 120, 120)",
-                  height: "20px",
-                }}
-              />
-            </div>
           </div>
-
-          <InProgressTravels />
+          <InProgressTravels buttonSelected={buttonSelected} />
         </div>
       </div>
 

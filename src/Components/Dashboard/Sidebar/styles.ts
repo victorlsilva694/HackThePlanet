@@ -1,12 +1,10 @@
 import styled, { keyframes } from "styled-components";
 
 export const SidebarBox = styled.div`
-  background-color: rgb(250, 250, 250);
   width: 23%;
   min-width: 400px;
   max-width: 410px;
   height: 100%;
-  box-shadow: rgb(220, 220, 220) 4px 7px 41px 4px;
 
   @media (max-width: 1690px) {
     width: 25%;

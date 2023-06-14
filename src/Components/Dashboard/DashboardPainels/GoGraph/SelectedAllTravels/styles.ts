@@ -24,7 +24,6 @@ export const SelectedAllTravelsBoxWrapper = styled.div`
     .my-travles {
       width: 100%;
       height: 95%;
-      justify-content: space-between;
       display: flex;
       flex-direction: column;
 
@@ -49,7 +48,7 @@ export const SelectedAllTravelsBoxWrapper = styled.div`
         }
 
         .buttons-data-travels {
-          min-width: 200px;
+          min-width: 250px;
           height: 4rem;
 
           .add-border {

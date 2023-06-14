@@ -45,7 +45,6 @@ export const DashBoardRootPainelData = styled.div`
   width: 100%;
   padding: 1rem;
   height: 88%;
-  overflow: scroll;
 
   .overlay {
     position: fixed;
@@ -172,57 +171,64 @@ export const DashBoardRootPainelData = styled.div`
         }
       }
     }
+    .overflow-data {
+      width: 100%;
+      max-height: 20rem;
+      overflow-y: scroll;
 
-    table {
-      width: 90%;
-      margin: auto;
-
-      @media (max-width: 1490px) {
-        width: 100%;
-      }
-
-      thead {
-        tr {
-          th {
-            width: 200px;
-            height: 3.5rem;
-            margin: auto;
-            .table-header {
-              width: 100%;
-              display: flex;
-              align-items: center;
-              justify-content: space-around;
-              height: 3rem;
-              display: flex;
-              font-family: "Roboto";
-
-              @media (max-width: 1690px) {
-                font-size: 0.9rem;
-              }
-
-              @media (max-width: 1490px) {
-                font-size: 0.8rem;
+      table {
+        width: 90%;
+        margin: auto;
+  
+        @media (max-width: 1490px) {
+          width: 100%;
+        }
+  
+        thead {
+          tr {
+            th {
+              width: 200px;
+              height: 3.5rem;
+              margin: auto;
+              .table-header {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                height: 3rem;
+                display: flex;
+                font-family: "Roboto";
+  
+                @media (max-width: 1690px) {
+                  font-size: 0.9rem;
+                }
+  
+                @media (max-width: 1490px) {
+                  font-size: 0.8rem;
+                }
               }
             }
           }
         }
-      }
-
-      tbody {
-        tr {
-          td {
-            width: 200px;
-            height: 3rem;
-            margin: auto;
-            text-align: center;
-            font-family: "Roboto";
-
-            @media (max-width: 1690px) {
-              font-size: 0.9rem;
-            }
-
-            @media (max-width: 1490px) {
-              font-size: 0.8rem;
+  
+        tbody {
+          height: auto;
+  
+          tr {
+            td {
+              width: 200px;
+              height: 3rem;
+              margin: auto;
+              text-align: center;
+              font-family: "Roboto";
+  
+              @media (max-width: 1690px) {
+                font-size: 0.9rem;
+              }
+  
+              @media (max-width: 1490px) {
+                font-size: 0.8rem;
+              }
             }
           }
         }

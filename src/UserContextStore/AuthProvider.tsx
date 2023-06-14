@@ -9,7 +9,7 @@ interface childrenType {
 
 export const AuthProvider: React.FC<childrenType> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [nameDashboard, setNameDashboard] = useState<string>("");
+  const [nameDashboard, setNameDashboard] = useState<string>("MdDashboard");
   const api = useApi();
 
   useEffect(() => {

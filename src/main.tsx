@@ -72,9 +72,77 @@ const GlobalStyle = createGlobalStyle`
     font-family: sans-serif;
   }
 
+
+/* Estilização do thumb (arrastador) */
+::-webkit-scrollbar-thumb {
+  background-color: #e9e9e9;
+  border-radius: 2px;
+}
+
+/* Estilização da track (trilho) */
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* Definição do tamanho da barra de rolagem */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
   body {
     background-color: #ffffff;
     color: #333;
+
+    .col-xs-2 {
+      width: 10%;
+      font-family: "Poppins";
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      color: rgb(80,80,80);
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .col-xs-6 {
+      width: 50%;
+      display: flex;
+      color: rgb(80,80,80);
+      font-family: "Poppins";
+      padding: 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      justify-content: left;
+      align-items: center;
+      height: 100%;
+    }
+
+    .col-xs-4 {
+      font-weight: 600;
+      width: 30%;
+      font-family: "Poppins";
+      color: rgb(80,80,80);
+      padding: 1rem;
+      height: 100%;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+    }
+
+    .col-xs-5 {
+      padding: 1rem;
+      font-family: "Poppins";
+      width: 20%;
+      font-weight: 600;
+      color: rgb(80,80,80);
+      display: flex;
+      justify-content: center;
+      font-size: 0.9rem;
+      align-items: center;
+      height: 100%;
+    }
   }
 
   a {
@@ -83,6 +151,8 @@ const GlobalStyle = createGlobalStyle`
       text-decoration: none;
     }
   }
+
+  
 `;
 
 ReactDOM.render(

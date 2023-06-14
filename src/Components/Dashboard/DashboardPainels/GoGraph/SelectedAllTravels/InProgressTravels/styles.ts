@@ -2,16 +2,43 @@ import styled from "styled-components";
 
 export const InProgressTravelsTableWrapper = styled.div`
   width: 100%;
-  height: 45rem;
+  height: 100%;
   padding: 1rem;
   border-radius: 10px;
   margin-top: 1rem;
-  box-shadow: rgb(245, 245, 245) 1px 4px 19px;
+
+  .empty-data-travel {
+    width: 100%;
+    margin: 1rem auto;
+    height: 40vh;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h1 {
+      font-family: 'Roboto';
+      color: rgb(70, 70, 70);
+      font-size: 1.2rem;
+      margin: 2rem 0;
+    }
+
+    p {
+      font-family: 'Roboto';
+      font-size: 1rem;
+      color: rgb(90, 90, 90);
+      margin: -1rem 0;
+      
+    }
+  }
 
   .table-header-travels-layer {
     border-radius: 3px;
-    background-color: rgb(250, 250, 250);
     width: 100%;
+    border-radius: 5px;
+    background-color: rgb(250, 250, 250);
     height: 3.5rem;
     display: flex;
 

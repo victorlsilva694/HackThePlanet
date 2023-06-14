@@ -43,22 +43,20 @@ function CardUser() {
       <div className="user-email-item-card">
         <h1>Filtros</h1>
         <Form>
-          {filterCardData.map((userCardDataCallBack: IUserCardData) => {
-            return (
-              <div
-                key={`default-${userCardDataCallBack.typeCheck}`}
-                className="mb-3"
-                style={{ margin: "1rem" }}
-              >
-                <Form.Check
-                  style={{ fontFamily: "Raleway" }}
-                  type={userCardDataCallBack.typeCheck}
-                  id={`default-${userCardDataCallBack.id}`}
-                  label={`${userCardDataCallBack.labelData}`}
-                />
-              </div>
-            );
-          })}
+          {filterCardData.map(
+            (userCardDataCallBack: IUserCardData, key: any) => {
+              return (
+                <div key={key} className="mb-3" style={{ margin: "1rem" }}>
+                  <Form.Check
+                    style={{ fontFamily: "Raleway" }}
+                    type={userCardDataCallBack.typeCheck}
+                    id={`default-${userCardDataCallBack.id}`}
+                    label={`${userCardDataCallBack.labelData}`}
+                  />
+                </div>
+              );
+            }
+          )}
         </Form>
       </div>
     </CardUserTravelPrice>

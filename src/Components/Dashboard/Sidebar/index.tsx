@@ -162,7 +162,7 @@ const iconsDataInformation: IconData[] = [
 
 function Sidebar() {
   const [iconSelectedId, setIconSelectedId] = useState<number | null>(null);
-  const [nameSelectedIcon, setNameSelectedIcon] = useState<string>('');
+  const [nameSelectedIcon, setNameSelectedIcon] = useState<string>('MdDashboard');
   const { setterDashBoardName } = useContext(AuthContext);
 
   
@@ -196,7 +196,6 @@ function Sidebar() {
               </div>
             ))}
           </div>
-          <div className="image-user"></div>
         </div>
         <CampaignsSidebar>
           <h1>Campanhas ativas</h1>

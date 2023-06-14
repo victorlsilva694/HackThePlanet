@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { dashboardApiRequests } from "../../../../../../hooks/useApi";
 import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
 import { Button } from "react-bootstrap";
+import { IFilesDataLenght } from "../../../../../../Types/Dashboard";
 
 function FilesListStorage() {
   interface INameRelationIcon {
@@ -34,11 +35,7 @@ function FilesListStorage() {
     id: number;
   }
 
-  interface IFilesDataLenght {
-    file_name: string;
-    file_size_mb: number;
-    user_name: string;
-  }
+
 
   const listFilesDataSizeSavedInStorage: IListFilesDataSizeSavedInStorage[] = [
     {
@@ -173,7 +170,7 @@ function FilesListStorage() {
                 </div>
                 <div className="name-layer-table">
                   <div className="icon-name-file-table">
-                    <Button style={{ width: '60%', height: '2.7rem', margin: 'auto' }} variant="danger">Danger</Button>
+                    <Button style={{ width: '50%', height: '2.7rem', margin: 'auto' }} variant="danger">Excluir</Button>
                   </div>
                 </div>
               </div>

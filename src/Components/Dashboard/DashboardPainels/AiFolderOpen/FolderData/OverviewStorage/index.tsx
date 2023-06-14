@@ -1,12 +1,10 @@
 import { BsImageFill } from "react-icons/bs";
 import { CardStorageData, OverviewStorageDataWrapper } from "./styles";
-import {
-  MdCreateNewFolder,
-  MdFitbit,
-  MdVideoLibrary,
-  MdViewModule,
-} from "react-icons/md";
-import { HiDocumentDuplicate, HiDocumentText } from "react-icons/hi";
+import { useEffect, useState, useContext } from "react";
+import { MdCreateNewFolder, MdFitbit, MdVideoLibrary } from "react-icons/md";
+import { IFilesDataLenght } from "../../../../../../Types/Dashboard";
+import { dashboardApiRequests } from "../../../../../../hooks/useApi";
+import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
 
 function OverviewStorage() {
   interface IOverviewStorageDataType {
@@ -68,6 +66,21 @@ function OverviewStorage() {
       color: "#ebebeb",
     },
   ];
+
+  const [files, setFiles] = useState<IFilesDataLenght[] | null>(null);
+  const requestDashboard = dashboardApiRequests();
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const allFilesResponse = await requestDashboard.getAllFilesByUserId(
+        parseInt((user?.id ?? "").toString(), 10)
+      );
+
+      console.log(allFilesResponse.file_payload);
+    };
+    fetchData();
+  }, []);
 
   return (
     <OverviewStorageDataWrapper>

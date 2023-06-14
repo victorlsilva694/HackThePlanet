@@ -133,6 +133,8 @@ function FilesMdDashboard() {
         }
       );
 
+      console.log(trasactionResponse)
+
       setTransactions(modifiedTransactions);
     };
     fetchData();
@@ -231,6 +233,7 @@ function FilesMdDashboard() {
             </div>
           </div>
         </div>
+        <div className="overflow-data">
         <table>
           <thead>
             <tr>
@@ -283,6 +286,7 @@ function FilesMdDashboard() {
             })}
           </tbody>
         </table>
+        </div>
       </div>
     </DashBoardRootPainelData>
   );
