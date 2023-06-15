@@ -26,7 +26,7 @@ Para executar o HackThePlanet em seu ambiente, certifique-se de atender aos segu
 Siga as etapas abaixo para instalar e configurar o HackThePlanet:
 
 1. Clone o repositório do HackThePlanet para o seu ambiente local:
-git clone https://github.com/seu-usuario/hacktheplanet.git
+git clone https://github.com/victorlsilva694/HackThePlanet.git
 
 2. Acesse o diretório do projeto:
 cd hacktheplanet
