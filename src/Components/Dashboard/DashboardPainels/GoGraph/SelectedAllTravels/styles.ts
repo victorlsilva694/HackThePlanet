@@ -82,6 +82,7 @@ export const SelectedAllTravelsBoxWrapper = styled.div`
 
   .user-card-reference {
     min-width: 200px;
+    padding: 2rem;
     width: 28%;
     border: 1px solid rgb(235, 235, 235);
     border-radius: 5px;

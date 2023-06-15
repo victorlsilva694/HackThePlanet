@@ -60,7 +60,7 @@ function PrivateRoute({
   return isAuthenticated() ? (
     <Route path={path} element={children} />
   ) : (
-    <Navigate to="/login" replace />
+    window.location.href = "http://localhost:5173"
   );
 }
 
@@ -95,9 +95,8 @@ const GlobalStyle = createGlobalStyle`
 
     .col-xs-2 {
       width: 10%;
-      font-family: "Poppins";
-      font-weight: 600;
-      font-size: 0.9rem;
+      font-family: "Roboto";
+      font-size: 1rem;
       display: flex;
       color: rgb(80,80,80);
       justify-content: center;
@@ -109,23 +108,21 @@ const GlobalStyle = createGlobalStyle`
       width: 50%;
       display: flex;
       color: rgb(80,80,80);
-      font-family: "Poppins";
+      font-family: "Roboto";
       padding: 1rem;
-      font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 1rem;
       justify-content: left;
       align-items: center;
       height: 100%;
     }
 
     .col-xs-4 {
-      font-weight: 600;
       width: 30%;
-      font-family: "Poppins";
+      font-family: "Roboto";
       color: rgb(80,80,80);
       padding: 1rem;
       height: 100%;
-      font-size: 0.9rem;
+      font-size: 1rem;
       display: flex;
       justify-content: left;
       align-items: center;
@@ -133,13 +130,12 @@ const GlobalStyle = createGlobalStyle`
 
     .col-xs-5 {
       padding: 1rem;
-      font-family: "Poppins";
+      font-family: "Roboto";
       width: 20%;
-      font-weight: 600;
       color: rgb(80,80,80);
       display: flex;
       justify-content: center;
-      font-size: 0.9rem;
+      font-size: 1rem;
       align-items: center;
       height: 100%;
     }

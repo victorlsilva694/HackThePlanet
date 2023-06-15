@@ -17,7 +17,7 @@ export const HeaderModal = styled.div`
     align-items: center;
 
     h1 {
-      font-family: 'Roboto';
+      font-family: "Roboto";
       font-size: 1rem;
       color: rgb(120, 120, 120);
       margin: 1rem;
@@ -27,12 +27,12 @@ export const HeaderModal = styled.div`
   .modal-flag {
     width: 100%;
     height: 4rem;
-    padding: 1rem;  
+    padding: 1rem;
     display: flex;
     align-items: center;
 
     h1 {
-      font-family: 'Roboto';
+      font-family: "Roboto";
       font-weight: 600;
       font-size: 1.7rem;
       color: rgb(20, 20, 20);
@@ -68,7 +68,7 @@ export const DashBoardRootPainelData = styled.div`
       height: 20rem;
       margin: auto;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
 
       @media (max-width: 1280px) {
         height: 48rem;
@@ -76,9 +76,9 @@ export const DashBoardRootPainelData = styled.div`
       }
 
       .values-travel {
-        width: 45%;
+        border: 1px solid rgb(240, 240, 240);
+        width: 49%;
         border-radius: 5px;
-        box-shadow: rgb(240, 240, 240) 2px 2px 17px 1px;
         height: 100%;
 
         @media (max-width: 1280px) {
@@ -126,16 +126,17 @@ export const DashBoardRootPainelData = styled.div`
   }
 
   .travels-selected {
-    width: 95%;
+    width: 100%;
     height: 25rem;
-    box-shadow: rgb(240, 240, 240) 2px 2px 17px 1px;
+    padding: 1rem;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 5px;
     margin: 2rem auto;
 
     .header-box-travel-layer {
       width: 95%;
       margin: auto;
       height: 4rem;
-      border-bottom: 1px solid rgb(240, 240, 240);
       display: flex;
       justify-content: space-between;
 
@@ -179,17 +180,18 @@ export const DashBoardRootPainelData = styled.div`
       table {
         width: 90%;
         margin: auto;
-  
+
         @media (max-width: 1490px) {
           width: 100%;
         }
-  
+
         thead {
           tr {
             th {
               width: 200px;
               height: 3.5rem;
               margin: auto;
+
               .table-header {
                 width: 100%;
                 display: flex;
@@ -198,36 +200,56 @@ export const DashBoardRootPainelData = styled.div`
                 height: 3rem;
                 display: flex;
                 font-family: "Roboto";
-  
+
                 @media (max-width: 1690px) {
                   font-size: 0.9rem;
                 }
-  
+
                 @media (max-width: 1490px) {
                   font-size: 0.8rem;
+                }
+
+                @media (max-width: 1110px) {
+                  font-size: 0.6rem;
                 }
               }
             }
           }
         }
-  
+
         tbody {
+          width: 100%;
           height: auto;
-  
+
           tr {
+            
+            .no-item {
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              margin: auto;
+              width: 200px;
+              height: 8rem;
+              border: 1px solid black;
+            }
+
             td {
               width: 200px;
               height: 3rem;
               margin: auto;
               text-align: center;
               font-family: "Roboto";
-  
+
               @media (max-width: 1690px) {
                 font-size: 0.9rem;
               }
-  
+
               @media (max-width: 1490px) {
                 font-size: 0.8rem;
+              }
+
+              @media (max-width: 1110px) {
+                font-size: 0.6rem;
               }
             }
           }

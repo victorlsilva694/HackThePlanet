@@ -16,6 +16,7 @@ import ModalFormAddTransaction from "./ModalFormAddTransaction";
 import { dashboardApiRequests } from "../../../../../hooks/useApi";
 import { AuthContext } from "../../../../../UserContextStore/AuthContext";
 import { format, addMonths, parse, parseISO } from "date-fns";
+import { ImFilesEmpty } from "react-icons/im";
 
 const slideInRight = keyframes`
 from {
@@ -133,7 +134,7 @@ function FilesMdDashboard() {
         }
       );
 
-      console.log(trasactionResponse)
+      console.log(trasactionResponse);
 
       setTransactions(modifiedTransactions);
     };
@@ -234,58 +235,92 @@ function FilesMdDashboard() {
           </div>
         </div>
         <div className="overflow-data">
-        <table>
-          <thead>
-            <tr>
-              {tableHeader.map((tableHeadercallback: any) => {
-                return (
-                  <th>
-                    <div className="table-header">
-                      {tableHeadercallback.name} <BsArrowsExpand />
-                    </div>
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {transactions?.map((transactionData: Transaction) => {
-              return (
-                <tr>
-                  <td>{transactionData.travel_code}</td>
-                  <td>{transactionData.transaction_name}</td>
-                  <td>{transactionData.created_at}</td>
-                  <td>
-                    <Button
-                      variant="warning"
-                      style={{
-                        width: "60%",
-                        backgroundColor: "#17A2B8",
-                        border: "none",
-                        color: "rgb(240, 240, 240)",
-                        borderRadius: "3px",
-                      }}
+          <table>
+            <thead>
+              <tr>
+                {tableHeader.map((tableHeadercallback: any) => {
+                  return (
+                    <th>
+                      <div className="table-header">
+                        {tableHeadercallback.name} <BsArrowsExpand />
+                      </div>
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {transactions && transactions.length > 0 ? (
+                transactions.map((transactionData: Transaction) => {
+                  return (
+                    <tr key={transactionData.id}>
+                      <td>{transactionData.travel_code}</td>
+                      <td>{transactionData.transaction_name}</td>
+                      <td>{transactionData.created_at}</td>
+                      <td>
+                        <Button
+                          variant="warning"
+                          style={{
+                            width: "60%",
+                            backgroundColor: "#17A2B8",
+                            border: "none",
+                            color: "rgb(240, 240, 240)",
+                            borderRadius: "3px",
+                          }}
+                        >
+                          Editar
+                        </Button>
+                      </td>
+                      <td>
+                        <Button
+                          variant="danger"
+                          style={{
+                            width: "60%",
+                            color: "rgb(240, 240, 240)",
+                            borderRadius: "3px",
+                          }}
+                        >
+                          Excluir
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <>
+                  <br />
+                  <br />
+                  <br />
+                  <tr>
+                    <td
+                      colSpan={5}
+                      style={{ textAlign: "center", verticalAlign: "middle" }}
                     >
-                      Editar
-                    </Button>
-                  </td>
-                  <td>
-                    <Button
-                      variant="danger"
-                      style={{
-                        width: "60%",
-                        color: "rgb(240, 240, 240)",
-                        borderRadius: "3px",
-                      }}
-                    >
-                      Excluir
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: 'column',
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "100px",
+                        }}
+                      >
+                        <ImFilesEmpty
+                          style={{
+                            width: "25px",
+                            height: "25px",
+                            color: "rgb(120, 120, 120)",
+                          }}
+                        />
+                        <br />
+                        Nenhum dado disponível.
+                      </div>
+                    </td>
+                  </tr>
+                </>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </DashBoardRootPainelData>

@@ -4,7 +4,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { dashboardApiRequests } from "../../../../../../hooks/useApi";
 import { AuthContext } from "../../../../../../UserContextStore/AuthContext";
 import { Button } from "react-bootstrap";
-import { IFilesDataLenght } from "../../../../../../Types/Dashboard";
+import {
+  IDeleteItems,
+  IFilesDataLenght,
+  IFilesDataTotally,
+} from "../../../../../../Types/Dashboard";
+import { ImFilesEmpty } from "react-icons/im";
 
 function FilesListStorage() {
   interface INameRelationIcon {
@@ -34,8 +39,6 @@ function FilesListStorage() {
     lastModifiedRelation: ILastModifiedRelationIcon[];
     id: number;
   }
-
-
 
   const listFilesDataSizeSavedInStorage: IListFilesDataSizeSavedInStorage[] = [
     {
@@ -69,7 +72,10 @@ function FilesListStorage() {
 
   const requestDashboard = dashboardApiRequests();
   const { user } = useContext(AuthContext);
-  const [files, setFiles] = useState<IFilesDataLenght[] | null>(null);
+  const [files, setFiles] = useState<IFilesDataTotally>({
+    all_files_selected: [],
+    file_payload: [],
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,15 +83,39 @@ function FilesListStorage() {
         parseInt((user?.id ?? "").toString(), 10)
       );
 
-      setFiles(allFilesResponse.file_payload);
+      setFiles({
+        all_files_selected: allFilesResponse.all_files_selected,
+        file_payload: allFilesResponse.file_payload,
+      });
     };
     fetchData();
   }, []);
 
+  async function deleteFileSelecteById({
+    name,
+    getIdByIndexData,
+    username,
+  }: IDeleteItems) {
+    const onDeleteUserFilesByIdPromise = await requestDashboard
+      .deleteUserFilesById(
+        name,
+        files.all_files_selected[getIdByIndexData].id,
+        username,
+        parseInt((user?.id ?? "").toString(), 10)
+      )
+      .then((sucess) => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    console.log(onDeleteUserFilesByIdPromise);
+  }
+
   return (
     <FilesListDataStorageStyles>
       <h1>Arquivos enviados</h1>
-
       <div className="table-files-layer">
         {listFilesDataSizeSavedInStorage.map(
           (layersTableCallBack: IListFilesDataSizeSavedInStorage) => {
@@ -147,35 +177,68 @@ function FilesListStorage() {
           }
         )}
         <div className="table-body-files-layer">
-          {files?.map((filesPayloadRender: IFilesDataLenght) => {
-            return (
-              <div className="body-table-layer">
-                <div className="checkbox-layer-table">
-                  <input type="checkbox" id="checkbox-item" />
-                </div>
-                <div className="name-layer-table">
-                  <div className="icon-name-file-table">
-                    <h1>{filesPayloadRender.file_name}</h1>
+          {files?.file_payload ? (
+            files?.file_payload.map(
+              (filesPayloadRender: IFilesDataLenght, setIndexData: number) => (
+                <div className="body-table-layer">
+                  <div className="checkbox-layer-table">
+                    <input type="checkbox" id="checkbox-item" />
+                  </div>
+                  <div className="name-layer-table">
+                    <div className="icon-name-file-table">
+                      <h1>{filesPayloadRender.file_name}</h1>
+                    </div>
+                  </div>
+                  <div className="name-layer-table">
+                    <div className="icon-name-file-table">
+                      <h1>{filesPayloadRender.file_size_mb}mb</h1>
+                    </div>
+                  </div>
+                  <div className="name-layer-table">
+                    <div className="icon-name-file-table">
+                      <h1>{filesPayloadRender.user_name}</h1>
+                    </div>
+                  </div>
+                  <div className="name-layer-table">
+                    <div className="icon-name-file-table">
+                      <Button
+                        onClick={() =>
+                          deleteFileSelecteById({
+                            name: filesPayloadRender.file_name,
+                            getIdByIndexData: setIndexData,
+                            username: filesPayloadRender.user_name,
+                          })
+                        }
+                        style={{
+                          width: "50%",
+                          height: "2.7rem",
+                          margin: "auto",
+                        }}
+                        variant="danger"
+                      >
+                        Excluir
+                      </Button>
+                    </div>
                   </div>
                 </div>
-                <div className="name-layer-table">
-                  <div className="icon-name-file-table">
-                    <h1>{filesPayloadRender.file_size_mb}mb</h1>
-                  </div>
-                </div>
-                <div className="name-layer-table">
-                  <div className="icon-name-file-table">
-                    <h1>{filesPayloadRender.user_name}</h1>
-                  </div>
-                </div>
-                <div className="name-layer-table">
-                  <div className="icon-name-file-table">
-                    <Button style={{ width: '50%', height: '2.7rem', margin: 'auto' }} variant="danger">Excluir</Button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+              )
+            )
+          ) : (
+            <div className="empty-data-travel">
+              <ImFilesEmpty
+                style={{
+                  width: "32px",
+                  height: "32px",
+                  color: "rgb(120, 120, 120)",
+                }}
+              />
+              <h1>Não existem viagens finalizadas</h1>
+              <p>
+                Adicione viagens no painel principal para que seja visivel nessa
+                tabela
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </FilesListDataStorageStyles>

@@ -34,15 +34,13 @@ function UploadStorageData() {
   };
 
   const submitFile = async (event: React.FormEvent) => {
-
     if (selectedFile) {
-      console.log(selectedFile);
       try {
         const formData = new FormData();
         formData.append("file", selectedFile);
-        formData.append("id",  String(user?.id ?? 0));
-        formData.append("name",  user?.name ?? "");
-        
+        formData.append("id", String(user?.id ?? 0));
+        formData.append("name", user?.name ?? "");
+
         const response = await axios.post(
           "http://localhost:8000/api/dashboard/upload/files_private",
           formData,
@@ -52,13 +50,15 @@ function UploadStorageData() {
             },
           }
         );
-        console.log(response);
-        navigate("/dashboard");
+
       } catch (error) {
         console.log(error);
       }
     }
+    window.location.reload();
   };
+
+
 
   const fileItems = acceptedFiles ? (
     acceptedFiles.map((file) => <h1>{file.name}</h1>)

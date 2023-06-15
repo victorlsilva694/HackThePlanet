@@ -57,11 +57,12 @@ export const BoxCardDataContent = styled.div`
 
       .card-plataform-benefits {
         width: 380px;
-        padding: 1rem;
+        padding: 2rem;
         margin: 2rem;
+        border-radius: 10px;
         min-width: 220px;
-        box-shadow: rgb(220, 220, 220) 1px 4px 19px;
-        height: 32rem;
+        box-shadow: rgb(240, 240, 240) 1px 4px 19px;
+        height: auto;
 
         @media (max-width: 1690px) {
           width: 320px;

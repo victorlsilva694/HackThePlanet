@@ -13,6 +13,7 @@ function OverviewStorage() {
     itensNumber: number;
     iconDataStorage: JSX.Element;
     description: number;
+    totalSize: number;
     color: string;
   }
 
@@ -26,6 +27,7 @@ function OverviewStorage() {
           style={{ color: "rgb(115, 115, 115)", width: "28px", height: "28px" }}
         />
       ),
+      totalSize: 200,
       description: 0,
       color: "#ebebeb",
     },
@@ -33,6 +35,7 @@ function OverviewStorage() {
       id: 2,
       storageDataName: "Videos",
       itensNumber: 0,
+      totalSize: 200,
       iconDataStorage: (
         <MdVideoLibrary
           style={{ color: "rgb(115, 115, 115)", width: "28px", height: "28px" }}
@@ -45,6 +48,7 @@ function OverviewStorage() {
       id: 3,
       storageDataName: "Documentos",
       itensNumber: 0,
+      totalSize: 200,
       iconDataStorage: (
         <MdCreateNewFolder
           style={{ color: "rgb(115, 115, 115)", width: "28px", height: "28px" }}
@@ -55,6 +59,7 @@ function OverviewStorage() {
     },
     {
       id: 4,
+      totalSize: 200,
       storageDataName: "Outros",
       itensNumber: 0,
       iconDataStorage: (
@@ -67,11 +72,15 @@ function OverviewStorage() {
     },
   ];
 
-  const [picturesFileLength, setPicturesFileLenght] = useState<number | null>(null);
+  const [picturesFileLength, setPicturesFileLenght] = useState<number | null>(
+    null
+  );
   const [videoFileLength, setVideoFileLength] = useState<number | null>(null);
-  const [documentsFileLength, setDocumentsFileLength] = useState<number | null>(null);
+  const [documentsFileLength, setDocumentsFileLength] = useState<number | null>(
+    null
+  );
   const [othersFileLength, setOthersFileLength] = useState<number | null>(null);
-  
+
   const requestDashboard = dashboardApiRequests();
   const { user } = useContext(AuthContext);
 
@@ -83,19 +92,36 @@ function OverviewStorage() {
 
       const files: IFilesDataLenght[] = allFilesResponse.file_payload;
 
-      const imageFiles = files.filter((file) => file.file_name.endsWith(".jpg") || file.file_name.endsWith(".png"));
-      const imageFilesSize = imageFiles.reduce((total, file) => total + file.file_size_mb, 0);
+      const imageFiles = files.filter(
+        (file) =>
+          file.file_name.endsWith(".jpg") || file.file_name.endsWith(".png")
+      );
+      const imageFilesSize = imageFiles.reduce(
+        (total, file) => total + file.file_size_mb,
+        0
+      );
       setPicturesFileLenght(imageFilesSize);
 
-      const videoFiles = files.filter((file) => file.file_name.endsWith(".mp4") || file.file_name.endsWith(".mov"));
-      const videoFilesSize = videoFiles.reduce((total, file) => total + file.file_size_mb, 0);
+      const videoFiles = files.filter(
+        (file) =>
+          file.file_name.endsWith(".mp4") || file.file_name.endsWith(".mov")
+      );
+      const videoFilesSize = videoFiles.reduce(
+        (total, file) => total + file.file_size_mb,
+        0
+      );
       setVideoFileLength(videoFilesSize);
 
-      const documentFiles = files.filter((file) => file.file_name.endsWith(".pdf") || file.file_name.endsWith(".docx"));
-      const documentFilesSize = documentFiles.reduce((total, file) => total + file.file_size_mb, 0);
+      const documentFiles = files.filter(
+        (file) =>
+          file.file_name.endsWith(".pdf") || file.file_name.endsWith(".docx")
+      );
+      const documentFilesSize = documentFiles.reduce(
+        (total, file) => total + file.file_size_mb,
+        0
+      );
       setDocumentsFileLength(documentFilesSize);
 
-      // Filtrar e calcular o tamanho dos outros arquivos
       const otherFiles = files.filter(
         (file) =>
           !file.file_name.endsWith(".jpg") &&
@@ -105,14 +131,16 @@ function OverviewStorage() {
           !file.file_name.endsWith(".pdf") &&
           !file.file_name.endsWith(".docx")
       );
-      const otherFilesSize = otherFiles.reduce((total, file) => total + file.file_size_mb, 0);
+      const otherFilesSize = otherFiles.reduce(
+        (total, file) => total + file.file_size_mb,
+        0
+      );
       setOthersFileLength(otherFilesSize);
 
-
-      console.log("picturesFileLength", picturesFileLength)
-      console.log("videoFileLength", videoFileLength)
-      console.log("documentsFileLength", documentsFileLength)
-      console.log("othersFileLength", othersFileLength)
+      console.log("picturesFileLength", picturesFileLength);
+      console.log("videoFileLength", videoFileLength);
+      console.log("documentsFileLength", documentsFileLength);
+      console.log("othersFileLength", othersFileLength);
     };
 
     fetchData();
@@ -121,6 +149,26 @@ function OverviewStorage() {
     <OverviewStorageDataWrapper>
       {overviewStorageDataType.map(
         (overviewStorageDataTypeCallBack: IOverviewStorageDataType) => {
+          const { storageDataName, iconDataStorage, color, totalSize } =
+            overviewStorageDataTypeCallBack;
+          const itemsNumber =
+            storageDataName === "Imagens"
+              ? picturesFileLength !== null
+                ? picturesFileLength
+                : 0
+              : storageDataName === "Videos"
+              ? videoFileLength !== null
+                ? videoFileLength
+                : 0
+              : storageDataName === "Documentos"
+              ? documentsFileLength !== null
+                ? documentsFileLength
+                : 0
+              : storageDataName === "Outros"
+              ? othersFileLength !== null
+                ? othersFileLength
+                : 0
+              : 0;
           return (
             <CardStorageData>
               <div className="data-storage-layer">
@@ -142,9 +190,14 @@ function OverviewStorage() {
                 </div>
               </div>
               <div className="storage-nivel-layer">
-                <div className="bar-load-storage"></div>
+                <div
+                  className="bar-load-storage"
+                  // style={{ width: `${(description / totalSize) * 100}%` }}
+                >
+                  <div className="bar-load-storage-body" style={{ width: `${(itemsNumber / totalSize) * 100}%` }}></div>
+                </div>
                 <p>
-                  {overviewStorageDataTypeCallBack.description}MB usados de
+                  {itemsNumber}MB usados de
                   200MB
                 </p>
               </div>

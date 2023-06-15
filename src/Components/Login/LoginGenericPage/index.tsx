@@ -39,7 +39,7 @@ function LoginGenericPage() {
 
   const handleLogin = async () => {
     await auth.signin(userState.email, userState.password);
-    navigate('/dashboard');
+    window.location.href = "http://localhost:5173/dashboard"
   };
 
   return (

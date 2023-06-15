@@ -1,6 +1,7 @@
 import { CampaignsSidebar, SidebarBox } from "./styles";
 import { SiPlanetscale } from "react-icons/si";
 import { MdDashboardCustomize } from "react-icons/md";
+import { TbArrowsExchange2 } from 'react-icons/tb';
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { AiFillSetting } from "react-icons/ai";
 import { GoGraph } from "react-icons/go";
@@ -131,7 +132,7 @@ const iconsDataInformation: IconData[] = [
     id: 4,
     name: "AiSetting",
     icon: (
-      <AiFillSetting
+      <TbArrowsExchange2
         style={{
           width: "22px",
           color: "rgb(110, 110, 110)",
@@ -164,8 +165,6 @@ function Sidebar() {
   const [iconSelectedId, setIconSelectedId] = useState<number | null>(null);
   const [nameSelectedIcon, setNameSelectedIcon] = useState<string>('MdDashboard');
   const { setterDashBoardName } = useContext(AuthContext);
-
-  
 
   function setIconForUsing(
     idParamIconCallBack: number,

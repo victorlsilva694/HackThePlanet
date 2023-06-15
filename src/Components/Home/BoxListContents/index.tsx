@@ -11,7 +11,7 @@ function BoxListContents() {
         "https://img.freepik.com/fotos-gratis/arquitetura-moderna-de-apartamentos_1268-14696.jpg?w=1380&t=st=1682112701~exp=1682113301~hmac=ba92749288a8ef4d7ff4b149c00d0db39ef0500389f0d367147eeb740873756e",
       ],
       hotelData: {
-        title: "cidade comedificios",
+        title: "Cidade comedificios",
         stars: "4.6",
         icon: (
           <SiGooglemaps
@@ -19,7 +19,7 @@ function BoxListContents() {
           />
         ),
         locale:
-          "Av. Mogi Guaçu, 1850 - Jardim das Laranjeiras, 6MRH+WH Conserva, Americana - SP",
+          "Av. Example Street, 123 - Example Neighborhood, City - State",
         price: "R$ 1.300,00",
       },
     },
@@ -38,7 +38,7 @@ function BoxListContents() {
           />
         ),
         locale:
-          "R. Dom Pedro II, 1835 - Conserva, Americana - SP, 13466-000, 7M98+7H Jardim Bela Vista",
+          "R. Example Street, 456 - Example Neighborhood, City - State, 12345-678, Additional Info",
         price: "R$ 1.299,00",
       },
     },
@@ -57,7 +57,7 @@ function BoxListContents() {
           />
         ),
         locale:
-          "R. da Agricultura, 4060 - Jardim Souza Queiroz, Santa Bárbara d'Oeste - SP, 13454-005, 6JW5+75 ",
+          "R. Example Street, 789 - Example Neighborhood, City - State, 98765-432, Additional Info",
         price: "R$ 1.899,00",
       },
     },
@@ -76,7 +76,7 @@ function BoxListContents() {
           />
         ),
         locale:
-          "R. Guaranís, 23 - Jardim São Francisco, Santa Bárbara d'Oeste - SP, 13456-079, 6JV3+CW",
+          "R. Example Street, 987 - Example Neighborhood, City - State, 54321-876, Additional Info",
         price: "R$ 1.079,00",
       },
     },
@@ -84,7 +84,7 @@ function BoxListContents() {
 
   return (
     <ContainerListContent>
-      <h1>Algumas Ofertas em alta</h1>
+      <h1>Algumas viagens em alta</h1>
       <div className="cards-hotels">
         {cardsMock.map((cardsMockCallBack: any) => {
           return (

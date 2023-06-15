@@ -21,6 +21,31 @@ export const FilesListDataStorageStyles = styled.div`
     .table-body-files-layer {
       width: 100%;
       height: auto;
+      .empty-data-travel {
+        width: 100%;
+        margin: 1rem auto;
+        height: 40vh;
+        border: 1px solid rgb(230, 230, 230);
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        h1 {
+          font-family: "Roboto";
+          color: rgb(70, 70, 70);
+          font-size: 1.2rem;
+          margin: 2rem 0;
+        }
+
+        p {
+          font-family: "Roboto";
+          font-size: 1rem;
+          color: rgb(90, 90, 90);
+          margin: -1rem 0;
+        }
+      }
     }
 
     .body-table-layer {

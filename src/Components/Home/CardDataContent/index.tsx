@@ -17,41 +17,39 @@ function CardDataContent() {
       id: 1,
       name: "",
       image: imageRunner,
-      title: "Lorem ipsum dolor sit amet",
+      title: "Simplificando suas Viagens",
       dataInformation:
-        "perspiciatis culpa harum reprehenderit omnis totam. Veniam tempora animi perspiciatis",
+        " Digitalize e armazene seus documentos de viagem, crie itinerários personalizados e acompanhe seus gastos em tempo real.",
     },
     {
       id: 1,
       name: "",
       image: imageDashboard,
-      title: "Lorem ipsum dolor sit amet",
+      title: " Suas Perguntas Respondidas",
       dataInformation:
-        "perspiciatis culpa harum reprehenderit omnis totam. Veniam tempora animi perspiciatis",
+        "Nossa seção de FAQ abrangente fornece respostas para as perguntas mais comuns relacionadas à nossa aplicação de gerenciamento de viagens. ",
     },
     {
       id: 1,
       name: "",
       image: imageCertificate,
-      title: "Lorem ipsum dolor sit amet",
+      title: "Conectando você a uma Viagem Perfeita",
       dataInformation:
-        "perspiciatis culpa harum reprehenderit omnis totam. Veniam tempora animi perspiciatis",
+        "Nossa aplicação de gerenciamento de viagens integra recursos abrangentes de documentação, planejamento e controle financeiro para simplificar seu processo de viagem.",
     },
   ];
 
   return (
     <BoxCardDataContent>
       <div className="header-data-content">
-        <h1>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed eum nisi,
-          magni dolor.
-        </h1>
+        <h1>Bem-vindo à nossa plataforma de documentação de viagens!</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-          perspiciatis culpa harum reprehenderit omnis totam. Veniam tempora
-          perspiciatis culpa harum reprehenderit omnis totam. Veniam tempora
-          animi perspiciatis eveniet mollitia ducimus, ipsa vel reiciendis quo
-          eum nisi, magni dolor.
+          Com a nossa plataforma, você pode centralizar todas as informações
+          essenciais em um só lugar. Mantenha seus itinerários, reservas de voos
+          e hospedagem, listas de atividades e documentos importantes facilmente
+          acessíveis. Não importa se você está planejando uma escapada de fim de
+          semana ou uma viagem de volta ao mundo, estamos aqui para ajudá-lo a
+          manter tudo sob controle.
         </p>
       </div>
       <div className="box-content-data">
@@ -63,6 +61,7 @@ function CardDataContent() {
                   <img src={platformBenefitsDataCallback.image} alt="" />
                 </div>
                 <h1>{platformBenefitsDataCallback.title}</h1>
+                <br />
                 <p>{platformBenefitsDataCallback.dataInformation}</p>
               </div>
             );

@@ -8,14 +8,19 @@ const api = axios.create({
 export const dashboardApiRequests = () => ({
   insertTransaction: async (Transaction: Transaction) => {
     const response = await api.post("/api/dashboard/new/transaction", {
-      transaction_name: Transaction.transactionName,
-      user_id: Transaction.userId,
+      transaction_name: Transaction.transaction_name,
+      user_id: Transaction.user_id,
       passport: Transaction.passport,
-      travel_code: Transaction.travelCode,
-      covid_data: Transaction.covidData,
-      price_values: Transaction.priceValues,
-      warning_annotation: Transaction.warningAnnotation,
+      travel_code: Transaction.travel_code,
+      covid_data: Transaction.covid_data,
+      price_values: Transaction.price_values,
+      warning_annotation: Transaction.warning_annotation,
     });
+    return response.data;
+  },
+
+  deleteUserFilesById: async (name: string, id: number, username: string, user_id: number) => {
+    const response = await api.get(`/api/dashboard/delete/file/${name}/${id}/${username}/${user_id}`);
     return response.data;
   },
 

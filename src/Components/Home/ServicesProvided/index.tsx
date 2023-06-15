@@ -9,17 +9,13 @@ function ServicesProvided() {
       </div>
       <div className="box-services">
         <div className="box-description">
-          <h1>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          </h1>
+          <h1>Prepare-se para explorar o mundo sem preocupações</h1>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab
-            consequuntur et optio voluptas quod eveniet dicta quibusdam
-            praesentium molestias a totam architecto perspiciatis ratione pariatur
-            ad, illum incidunt consectetur! Impedit?
+            Junte-se a nós e experimente a praticidade e a tranquilidade de uma
+            plataforma de documentação de viagens feita sob medida para você.
+            Estamos aqui para ajudá-lo a transformar seus sonhos de viagem em
+            realidade e tornar cada experiência inesquecível.
           </p>
-
-          <button id="button-more-info"></button>
         </div>
       </div>
     </ContainerServicesProvider>

@@ -3,13 +3,13 @@ import { INameDashboard, User } from "../Types/User";
 import { Transaction } from "../Types/Dashboard";
 
 interface ITransactionObjectData {
-  transactionName: string;
+  transaction_name: string;
   passport: string;
-  userId: number;
-  travelCode: string;
-  covidData: string;
-  priceValues: string;
-  warningAnnotation: string;
+  user_id: number;
+  travel_code: string;
+  covid_data: string;
+  price_values: string;
+  warning_annotation: string;
 }
 export type DashboardContextType = {
   Transaction: Transaction | null;

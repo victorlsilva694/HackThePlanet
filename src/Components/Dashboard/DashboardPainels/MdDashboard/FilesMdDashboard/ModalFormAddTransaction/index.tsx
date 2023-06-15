@@ -61,24 +61,24 @@ function ModalFormAddTransaction() {
   const { user } = useContext(AuthContext);
 
   interface ITransactionObjectData {
-    transactionName: string;
+    transaction_name: string;
     passport: string;
-    userId: number;
-    travelCode: string;
-    covidData: string;
-    priceValues: string;
-    warningAnnotation: string;
+    user_id: number;
+    travel_code: string;
+    covid_data: string;
+    price_values: string;
+    warning_annotation: string;
   }
 
   const [newTransactionObjectData, setNewTransactionObjectData] =
     useState<ITransactionObjectData>({
-      transactionName: "",
+      transaction_name: "",
       passport: travelsRequirements[0].optionsPassport[0].value,
-      userId: parseInt((user?.id ?? "").toString(), 10),
-      travelCode: uuidv4().split("-")[0],
-      covidData: travelsRequirements[1].optionsPassport[0].value,
-      priceValues: moneyToUse[0],
-      warningAnnotation: "",
+      user_id: parseInt((user?.id ?? "").toString(), 10),
+      travel_code: uuidv4().split("-")[0],
+      covid_data: travelsRequirements[1].optionsPassport[0].value,
+      price_values: moneyToUse[0],
+      warning_annotation: "",
     });
 
   function handleInputChange(
@@ -99,7 +99,7 @@ function ModalFormAddTransaction() {
 
   async function sendTransactionForm() {
     await newTransaction.setTransaction(newTransactionObjectData);
-    navigate("/dashboard");
+    window.location.reload();
   }
 
   return (
@@ -108,9 +108,9 @@ function ModalFormAddTransaction() {
         Nome da transação
       </FormCheck.Label>
       <Form.Control
-        value={newTransactionObjectData?.transactionName || ""}
+        value={newTransactionObjectData?.transaction_name || ""}
         onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          handleInputChange(event, "transactionName")
+          handleInputChange(event, "transaction_name")
         }
         style={{ margin: ".5rem 0", height: "2.7rem" }}
         type="text"
@@ -176,8 +176,8 @@ function ModalFormAddTransaction() {
         <Form.Select
           style={{ margin: ".5rem 0", height: "2.7rem" }}
           id="money-management"
-          value={newTransactionObjectData?.priceValues || ""}
-          onChange={(event) => handleInputChange(event, "priceValues")}
+          value={newTransactionObjectData?.price_values || ""}
+          onChange={(event) => handleInputChange(event, "price_values")}
         >
           {moneyToUse.map((moneyToUseCallBack: string, key: any) => {
             return (
@@ -207,9 +207,9 @@ function ModalFormAddTransaction() {
           <Form.Control
             as="textarea"
             placeholder="Leave a comment here"
-            value={newTransactionObjectData?.warningAnnotation || ""}
+            value={newTransactionObjectData?.warning_annotation || ""}
             onChange={(event: any) =>
-              handleInputChange(event, "warningAnnotation")
+              handleInputChange(event, "warning_annotation")
             }
             style={{ margin: ".5rem 0", height: "100px" }}
           />

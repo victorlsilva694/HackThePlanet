@@ -10,10 +10,11 @@ function Banner() {
             Bem vindo(a) ao <span>Hack the Planet!</span>
           </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At saepe
-            provident a distinctio. Id, sed laborum possimus nulla commodi
-            aliquid accusamus veniam a. Voluptatem officiis nam doloremque nulla
-            assumenda! Explicabo.
+            Descubra um mundo de possibilidades ao planejar suas aventuras com
+            facilidade e organização. Nossa plataforma foi projetada para tornar
+            o processo de documentação de viagens simples e eficiente,
+            permitindo que você aproveite ao máximo cada momento de suas
+            jornadas.
           </p>
         </div>
         <HorizontalContainer />
@@ -25,9 +26,7 @@ function Banner() {
               <div className="box-first-image"></div>
               <div className="box-second-image"></div>
             </div>
-            <div className="image-align-top">
-
-            </div>
+            <div className="image-align-top"></div>
           </div>
         </GridImages>
       </div>

@@ -5,7 +5,7 @@ export const CardUserTravelPrice = styled.div`
   height: 4rem;
 
   .card-user-data-travel-cupon {
-    width: 95%;
+    width: 100%;
     margin: auto;
     height: 100%;
     display: flex;
@@ -14,7 +14,7 @@ export const CardUserTravelPrice = styled.div`
   }
 
   .title-card-user-travel {
-    width: 70%;
+    width: 90%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -36,8 +36,8 @@ export const CardUserTravelPrice = styled.div`
 
   .user-email-item-card {
     width: 95%;
-    padding: 1rem;
-    margin: auto;
+    margin: 2rem auto;
+
     height: 20rem;
 
     h1 {

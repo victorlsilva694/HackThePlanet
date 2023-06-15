@@ -87,6 +87,12 @@ export const CardStorageData = styled.div`
       background-color: rgb(230, 230, 230);
     }
 
+    .bar-load-storage-body {
+      border-radius: 90px;
+      height: 10px;
+      background-color: rgb(22, 88, 73);
+    }
+
     p {
       margin: .5rem 0.5rem;
       font-size: .9rem;
